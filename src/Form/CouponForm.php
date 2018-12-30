@@ -28,6 +28,7 @@ class CouponForm extends FormBase
     public $text_add_coupons;
     public $text_total;
 
+
     /**
      *  constructor.
      */
@@ -470,6 +471,7 @@ class CouponForm extends FormBase
 
 
     }
+
 
     /**
      * {@inheritdoc}
