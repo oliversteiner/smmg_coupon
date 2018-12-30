@@ -1,0 +1,14 @@
+{
+  "name": "drupal/smmg_coupon",
+  "type": "drupal-module",
+  "description": "coupon Module for Small Messages",
+  "keywords": ["Drupal"],
+  "license": "GPL-3.0+",
+  "homepage": "https://github.com/oliversteiner/smmg_coupon",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/oliversteiner/smmg_coupon/issues",
+    "source": "https://github.com/oliversteiner/smmg_coupon"
+  },
+  "require": { }
+}

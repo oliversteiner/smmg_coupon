@@ -1,0 +1,53 @@
+<div class="coupon-receipt ">
+
+    <div class="coupon-list">
+        <h2>Order</h2>
+
+        <div id="coupon-table-header" class="coupon-table-header">
+            <span class="coupon-table-number">Number</span>
+            <span class="coupon-table-times"></span>
+            <span class="coupon-table-amount">Amount</span>
+            <span class="coupon-table-unit"></span>
+        </div>
+
+        {% for coupon in coupons %}
+
+            <div class="coupon-table-row-receipt">
+                <span class="coupon-table-number">{{ coupon.number }}</span>
+                <span class="coupon-table-times">&times;</span>
+                <span class="coupon-table-amount">{{ coupon.amount }}</span>
+                <span class="coupon-table-unit">Fr.-</span>
+            </div>
+
+        {% endfor %}
+
+        <div id="coupon-table-total" class="coupon-table-total coupon-table-total-receipt">
+            <span class="coupon-table-total-total">Total:</span>
+            <span class="coupon-table-total-number">{{ total.number }}</span>
+            <span class="coupon-table-total-number-label">pieces</span>
+            <span class="coupon-table-total-amount">{{ total.amount }}</span>
+            <span class="coupon-table-total-unit">Fr.-</span>
+        </div>
+    </div>
+
+
+    <div class="coupon-address">
+        <h2>Delivery Address</h2>
+
+        <address>
+            <div class="address-gender">{{ address.gender }}</div>
+            <div class="address-name">{{ address.first_name }} {{ address.last_name }}</div>
+
+            <div class="address-street">{{ address.address }}</div>
+            <div class="address-city">{{ address.zip }}  {{ address.city }}</div>
+
+            <div class="address-email"><i class="fas fa-envelope"></i> {{ address.email }}</div>
+            <div class="address-phone"><i class="fas fa-phone"></i> {{ address.phone }}</div>
+
+        </address>
+    </div>
+    <div class="coupon-info">
+        <p>Thank you very much for your order.</p>
+    </div>
+</div>
+

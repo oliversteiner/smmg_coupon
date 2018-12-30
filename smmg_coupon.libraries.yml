@@ -1,0 +1,9 @@
+smmg_coupon.main:
+  css:
+    theme:
+      assets/css/smmg_coupon.css: {}
+  js:
+    assets/js/smmgCoupon.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once

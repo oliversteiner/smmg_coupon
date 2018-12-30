@@ -1,0 +1,67 @@
+<h2 style="color: #353a92; font-size: 18px; margin: 5px 0 10px;">Delivery Address</h2>
+<div>
+    <address style="font-size: 14px">
+        <span>{{ address.gender }}</span><br>
+        <span style="font-weight: bold">{{ address.first_name }} {{ address.last_name }}</span><br>
+        <span>{{ address.address }}</span><br>
+        <span> {{ address.zip }} {{ address.city }}</span><br>
+        <br>
+        <span>{{ address.email }}</span><br>
+        <span>{{ address.phone }}</span><br>
+    </address>
+</div>
+<br>
+
+<h2 style="color: #353a92; font-size: 18px; margin: 5px 0 10px;">Coupons</h2>
+
+<div style="width: 400px">
+    <table align="center" cellspacing="0" cellpadding="10" style="font-size: 14px">
+        <tr>
+            <th>Number</th>
+            <th></th>
+            <th>Amount</th>
+        </tr>
+
+        {% for coupon in coupons %}
+
+            {% if not loop.last %}
+
+                <tr align="center">
+                    <td style="border-bottom: 1px solid silver">{{ coupon.number }}</td>
+                    <td style="border-bottom: 1px solid silver">&times;</td>
+                    <td style="border-bottom: 1px solid silver">{{ coupon.amount }} {{ total.amount_suffix }}</td>
+                </tr>
+
+            {% else %}
+
+                <tr align="center">
+                    <td style="">{{ coupon.number }}</td>
+                    <td style="">&times;</td>
+                    <td style="">{{ coupon.amount }} {{ total.amount_suffix }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        <tr>
+            <th colspan='3' style="border-bottom: 2px solid gray" align="left"></th>
+        </tr>
+
+        <tr>
+            <td style="border-bottom: 2px solid gray">Total</td>
+            <td style="border-bottom: 2px solid gray">{{ total.number }} {{ total.number_suffix }}</td>
+            <td style="border-bottom: 2px solid gray">{{ total.amount }} {{ total.amount_suffix }}</td>
+        </tr>
+    </table>
+</div>
+<br>
+<br>
+
+<h3 style="font-weight:bold; font-size: 16px">Feelgood Inc.</h3>
+
+<address style="font-size: 14px">
+    Post office box <br>
+    5103 New York <br>
+    info@example.com
+</address>
+<br>
+
+<h3>Bank Account</h3>

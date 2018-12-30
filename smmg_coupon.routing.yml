@@ -1,0 +1,52 @@
+# Coupon
+# ---------------------------------
+#
+# Coupon - Form
+#
+smmg_coupon.coupon:
+  path: 'coupon'
+  defaults:
+    _form: '\Drupal\smmg_coupon\Form\CouponForm'
+    _title: 'Order Coupons'
+  requirements:
+    _permission: 'access content'
+#
+# Coupon - Thank You
+#
+smmg_coupon.coupon.thanks:
+  path: 'coupon/thank-you/{coupon_order_nid}/{token}/{member_nid}'
+  defaults:
+    _controller: '\Drupal\smmg_coupon\Controller\CouponController::thankYouPage'
+    _title: 'Thank You.'
+    coupon_order_nid: null
+    token: null
+    member_nid: null
+  requirements:
+    _permission: 'access content'
+#
+# Coupon - Email Sandbox // 1594
+#
+smmg_coupon.coupon_sandbox_email:
+  path: 'coupon/sandbox/{coupon_order_nid}/{token}/{output_mode}'
+  defaults:
+    _controller: '\Drupal\smmg_coupon\Controller\CouponController::sandboxEmail'
+    _title: 'Coupon Email Test'
+    coupon_order_nid: null
+    token: null
+    output_mode: 'html'
+  requirements:
+    _permission: 'access content'
+
+
+#
+# Coupon - Email Sandbox // 1594
+#
+smmg_coupon.coupon_sandbox_send_email:
+  path: 'coupon/send/{coupon_order_nid}/{token}'
+  defaults:
+    _controller: '\Drupal\smmg_coupon\Controller\CouponController::sandboxSendEmail'
+    _title: 'Coupon Email Test'
+    coupon_order_nid: null
+    token: null
+  requirements:
+    _permission: 'access content'

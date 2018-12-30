@@ -1,0 +1,296 @@
+$coupon-accent: rgb(36, 37, 145);
+$coupon-accent-light: rgb(59, 55, 183);
+$coupon-accent-dark: rgb(0, 16, 87);
+
+$form-max-width: 400px;
+$text-block-width: 300px;
+$color-text-info: rgb(110, 110, 110);
+$block-spacing: 25px;
+$color-form-background: #f6f6f6;
+$color-border: #dbdbdb;
+
+
+.smmg-coupon-form,
+.smmg-coupon-thank-you-form {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid silver;
+  background-color: white;
+  max-width: $form-max-width;
+
+  h2 {
+    margin: 0;
+  }
+
+  fieldset {
+    margin: 0;
+  }
+
+}
+
+
+// FieldSet / Panels:
+#edit-table,
+#edit-postal-address,
+#edit-action {
+  border: none;
+  margin-bottom: 3rem;
+
+  div.panel-heading {
+    //  display: none;
+  }
+
+  label {
+    margin-bottom: .1rem;
+  }
+
+  input,
+  select {
+    border: none;
+    background-color: $color-form-background;
+    margin-bottom: 0.1rem;
+  }
+
+
+}
+
+.coupon-table-row{
+  border: none;
+}
+
+.form-item-subscribe-newsletter {
+  margin-left: 20px;
+  margin-bottom: 30px;
+
+}
+
+.form-check label {
+  display: inline;
+  cursor: pointer;
+}
+
+// Thank you Form
+
+.reservation-success-text-small {
+  margin: 0;
+}
+
+.newsletter-unsubscribe-link {
+  display: block;
+  margin: 0 0 $block-spacing 0;
+  padding: 0;
+  border-radius: 5px;
+}
+
+
+#edit-action-yes,
+#edit-back-to-front {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+
+}
+
+.coupon-table-header {
+  border-bottom: 1px solid $color-border;
+  margin-bottom: 10px;
+  padding-bottom: 0;
+}
+
+.coupon-table-row {
+  border-bottom: 1px solid $color-border;
+  padding-bottom: 7px;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+
+.coupon-table-number,
+.coupon-table-times,
+.coupon-table-amount,
+.coupon-table-unit,
+.coupon-table-delete {
+  display: inline-block;
+  min-width: 70px;
+  // border: 1px solid silver;
+  text-align: center;
+
+
+}
+
+
+// Times
+.coupon-table-times {
+  color: silver;
+  min-width: 20px;
+}
+
+// Unit
+.coupon-table-unit {
+  color: silver;
+  min-width: 40px;
+}
+
+// Delete Coupon Row
+
+.coupon-table-delete {
+  margin: 0 5px 0 20px;
+  padding: 5px;
+  border: 1px transparent solid;
+  color: silver;
+  cursor: pointer;
+
+  &:hover {
+    color: black;
+
+  }
+
+  &:active {
+    color: red;
+  }
+}
+
+// Add Coupon
+.coupon-table-add {
+  margin: 10px;
+  padding: 5px;
+  border: 1px transparent solid;
+  color: silver;
+  cursor: pointer;
+
+  &:hover {
+    color: black;
+
+  }
+
+  &:active {
+    color: green;
+  }
+
+  div.fontawesome-icon {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+}
+
+
+// Total
+
+.coupon-table-total {
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.coupon-table-total-total {
+  margin-left: 10px;
+  margin-right: 40px;
+}
+
+.coupon-table-total-amount {
+  font-weight: bold;
+}
+
+.coupon-table-total-unit {
+}
+
+.coupon-table-total-number {
+  font-weight: bold;
+}
+
+.coupon-table-total-number-label {
+  margin-right: 40px;
+
+}
+
+// Address
+
+.form-item-zip-code {
+  display: inline-block;
+  padding-right: 2px;
+}
+
+
+.form-item-city {
+  flex: auto;
+  padding-left: 2px;
+
+}
+
+.form-group-zip-city {
+  display: flex;
+  align-content: space-between;
+}
+
+
+// coupon-receipt
+
+
+.coupon-receipt {
+  display: flex;
+  flex-wrap: wrap;
+
+
+  .coupon-table-number,
+  .coupon-table-times,
+  .coupon-table-amount,
+  .coupon-table-unit,
+  .coupon-table-delete {
+    display: inline-block;
+    min-width: 50px;
+    text-align: right;
+    // border: 1px silver solid;
+  }
+
+  .coupon-table-times,
+  .coupon-table-unit {
+    min-width: 20px;
+  }
+
+  .coupon-table-total-total,
+  .coupon-table-total-number-label {
+    margin-right: 20px;
+
+  }
+
+}
+
+.coupon-info,
+.coupon-address,
+.coupon-list {
+  padding: 10px 10px 10px 20px;
+  margin: 0 10px;
+  min-width: 270px;
+  border-left:  solid 1px $color-border;
+
+}
+
+
+
+.coupon-receipt address {
+  padding-left: 5px;
+  color: black;
+
+  i, svg {
+    color: grey;
+    margin-right: 5px;
+  }
+
+  .address-name {
+    font-weight: bold;
+  }
+
+  .address-city {
+    margin-bottom: 15px;
+  }
+
+
+}

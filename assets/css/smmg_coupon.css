@@ -1,0 +1,185 @@
+.smmg-coupon-form,
+.smmg-coupon-thank-you-form {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid silver;
+  background-color: white;
+  max-width: 400px; }
+  .smmg-coupon-form h2,
+  .smmg-coupon-thank-you-form h2 {
+    margin: 0; }
+  .smmg-coupon-form fieldset,
+  .smmg-coupon-thank-you-form fieldset {
+    margin: 0; }
+
+#edit-table,
+#edit-postal-address,
+#edit-action {
+  border: none;
+  margin-bottom: 3rem; }
+  #edit-table label,
+  #edit-postal-address label,
+  #edit-action label {
+    margin-bottom: .1rem; }
+  #edit-table input,
+  #edit-table select,
+  #edit-postal-address input,
+  #edit-postal-address select,
+  #edit-action input,
+  #edit-action select {
+    border: none;
+    background-color: #f6f6f6;
+    margin-bottom: 0.1rem; }
+
+.coupon-table-row {
+  border: none; }
+
+.form-item-subscribe-newsletter {
+  margin-left: 20px;
+  margin-bottom: 30px; }
+
+.form-check label {
+  display: inline;
+  cursor: pointer; }
+
+.reservation-success-text-small {
+  margin: 0; }
+
+.newsletter-unsubscribe-link {
+  display: block;
+  margin: 0 0 25px 0;
+  padding: 0;
+  border-radius: 5px; }
+
+#edit-action-yes,
+#edit-back-to-front {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center; }
+
+.coupon-table-header {
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 10px;
+  padding-bottom: 0; }
+
+.coupon-table-row {
+  border-bottom: 1px solid #dbdbdb;
+  padding-bottom: 7px;
+  display: none; }
+  .coupon-table-row.active {
+    display: block; }
+
+.coupon-table-number,
+.coupon-table-times,
+.coupon-table-amount,
+.coupon-table-unit,
+.coupon-table-delete {
+  display: inline-block;
+  min-width: 70px;
+  text-align: center; }
+
+.coupon-table-times {
+  color: silver;
+  min-width: 20px; }
+
+.coupon-table-unit {
+  color: silver;
+  min-width: 40px; }
+
+.coupon-table-delete {
+  margin: 0 5px 0 20px;
+  padding: 5px;
+  border: 1px transparent solid;
+  color: silver;
+  cursor: pointer; }
+  .coupon-table-delete:hover {
+    color: black; }
+  .coupon-table-delete:active {
+    color: red; }
+
+.coupon-table-add {
+  margin: 10px;
+  padding: 5px;
+  border: 1px transparent solid;
+  color: silver;
+  cursor: pointer; }
+  .coupon-table-add:hover {
+    color: black; }
+  .coupon-table-add:active {
+    color: green; }
+  .coupon-table-add div.fontawesome-icon {
+    display: inline-block;
+    margin-right: 10px; }
+
+.coupon-table-total {
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+  margin: 10px 0;
+  padding: 10px 0; }
+
+.coupon-table-total-total {
+  margin-left: 10px;
+  margin-right: 40px; }
+
+.coupon-table-total-amount {
+  font-weight: bold; }
+
+.coupon-table-total-number {
+  font-weight: bold; }
+
+.coupon-table-total-number-label {
+  margin-right: 40px; }
+
+.form-item-zip-code {
+  display: inline-block;
+  padding-right: 2px; }
+
+.form-item-city {
+  flex: auto;
+  padding-left: 2px; }
+
+.form-group-zip-city {
+  display: flex;
+  align-content: space-between; }
+
+.coupon-receipt {
+  display: flex;
+  flex-wrap: wrap; }
+  .coupon-receipt .coupon-table-number,
+  .coupon-receipt .coupon-table-times,
+  .coupon-receipt .coupon-table-amount,
+  .coupon-receipt .coupon-table-unit,
+  .coupon-receipt .coupon-table-delete {
+    display: inline-block;
+    min-width: 50px;
+    text-align: right; }
+  .coupon-receipt .coupon-table-times,
+  .coupon-receipt .coupon-table-unit {
+    min-width: 20px; }
+  .coupon-receipt .coupon-table-total-total,
+  .coupon-receipt .coupon-table-total-number-label {
+    margin-right: 20px; }
+
+.coupon-info,
+.coupon-address,
+.coupon-list {
+  padding: 10px 10px 10px 20px;
+  margin: 0 10px;
+  min-width: 270px;
+  border-left: solid 1px #dbdbdb; }
+
+.coupon-receipt address {
+  padding-left: 5px;
+  color: black; }
+  .coupon-receipt address i, .coupon-receipt address svg {
+    color: grey;
+    margin-right: 5px; }
+  .coupon-receipt address .address-name {
+    font-weight: bold; }
+  .coupon-receipt address .address-city {
+    margin-bottom: 15px; }
+
+/*# sourceMappingURL=smmg_coupon.css.map */

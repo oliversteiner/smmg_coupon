@@ -1,0 +1,138 @@
+<?php
+
+/**
+ * @file
+ * Contains smmg_coupon.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\small_messages\Utility\Helper;
+
+/**
+ * Implements hook_help().
+ */
+function smmg_coupon_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the smmg_coupon module.
+    case 'help.page.smmg_coupon':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Coupon Module for Small Messages') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function smmg_coupon_theme() {
+  return [
+    'smmg_coupon' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function smmg_coupon_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    // Coupon Order
+    if (in_array($form_id, ['node_coupon_order_edit_form', 'node_coupon_order_form'])) {
+
+
+// if Token field empty fill in automaticaly
+        $token = Helper::generateToken();
+        $form['field_smmg_token']['widget'][0]['value']['#default_value'] = $token;
+    }
+}
+
+
+/**
+ * Implements hook_inline_entity_form_table_fields_alter().
+ */
+function smmg_coupon_inline_entity_form_table_fields_alter(&$fields, $context)
+{
+
+    $coupon_unit = false;
+
+    foreach ($context ['allowed_bundles'] as $bundle) {
+
+        if ($bundle == 'coupon_unit') {
+            $coupon_unit = TRUE;
+        }
+    }
+
+    if ($coupon_unit) {
+
+        // This line removes the title field. you're looking to do this, just with the status instead of title field
+        unset($fields['title']);
+        unset($fields['label']);
+        unset($fields['status']);
+
+        // Add Coupon Fields
+
+        // Coupon Number
+        $fields['field_coupon_number'] = [
+            'type' => 'field',
+            'label' => t('Number'),
+            'weight' => 100
+        ];
+
+        //  Coupon Amount
+        $fields['field_coupon_amount'] = [
+            'type' => 'field',
+            'label' => t('Amount'),
+            'weight' => 101,
+            'display_options' => [
+                'type' => 'entity_reference_label',
+                'settings' => ['link' => FALSE],
+            ],
+        ];
+    }
+
+
+}
+
+
+/**
+ * Implements hook_mail().
+ */
+function smmg_coupon_mail($key, &$message, $params) {
+
+    switch ($key) {
+
+
+        case 'EMAIL_PLAIN':
+
+            $message['from'] = $params['from'];
+            $message['subject'] = $params['title'];
+            $message['body'][] = $params['message_plain'];
+            break;
+
+
+        case 'EMAIL_SMTP' :
+
+            $message['from'] = $params['from'];
+            $message['subject'] = $params['title'];
+            $message['headers'] = [
+                'MIME-Version' => '1.0',
+                'Content-Type' => "multipart/alternative",
+                'Content-Transfer-Encoding' => '8Bit',
+                'X-Mailer' => 'Drupal',
+            ];
+            $message['body'][] = "\r\n--\r\n";
+            $message['body'][] = 'Content-Type: text/plain; charset=utf-8;';
+            $message['body'][] = $params['message_plain'];
+            $message['body'][] = "\r\n--\r\n";
+            $message['body'][] = "Content-Type: text/html; charset=utf-8;";
+            $message['body'][] = $params['message_html'];
+            $message['body'][] = "\r\n-- --\r\n";
+            break;
+    }
+
+}

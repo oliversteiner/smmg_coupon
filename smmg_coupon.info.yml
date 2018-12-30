@@ -1,0 +1,11 @@
+name: 'Small Messages - Coupon'
+type: module
+description: 'Coupon Plugin for Small Messages'
+core: 8.x
+package: 'Messages'
+dependencies:
+  - drupal:node
+  - small_messages
+  - honeypot
+  - inline_entity_form
+  - auto_entitylabel
