@@ -5,6 +5,7 @@ namespace Drupal\smmg_coupon\Utility;
 
 use Drupal\node\Entity\Node;
 use Drupal\small_messages\Utility\Helper;
+use Drupal\smmg_coupon\Controller\CouponController;
 
 trait CouponTrait
 {
@@ -155,9 +156,9 @@ trait CouponTrait
     private static function sendNotivicationMailNewCoupon($coupon_order_nid, $token = null)
     {
 
-        // Send Email ?
-        $test = false;
-        $test_email_address = TRUE;
+        $templates = CouponController::getTemplates();
+
+        $config_email_addresses = self::getEmailAddressesFromConfig();
 
         // load Data
         $data = self::couponVariables($coupon_order_nid, $token);
@@ -170,14 +171,12 @@ trait CouponTrait
         $title = t('Order Coupon');
         $email_title = "$title: $first_name $last_name";
 
-
         // HTML
-        $template_path = drupal_get_path('module', 'smmg_coupon') . "/templates/smmg-coupon-email.html.twig";
-        $template = file_get_contents($template_path);
+        $template_html = file_get_contents($templates['email_html']);
         $build_html = [
             'description' => [
                 '#type' => 'inline_template',
-                '#template' => $template,
+                '#template' => $template_html,
                 '#context' => $data,
             ],
         ];
@@ -185,8 +184,7 @@ trait CouponTrait
         $message_html_body = \Drupal::service('renderer')->render($build_html);
 
         // Plain
-        $template_path_plain = drupal_get_path('module', 'smmg_coupon') . "/templates/smmg-coupon-email-plain.html.twig";
-        $template_plain = file_get_contents($template_path_plain);
+        $template_plain = file_get_contents($templates['email_plain']);
         $build_plain = [
             'description' => [
                 '#type' => 'inline_template',
@@ -197,36 +195,25 @@ trait CouponTrait
 
 
         // Send to
-        if ($test_email_address) {
+        $email_address_from = $config_email_addresses['from'];
+        $email_addresses_to = $config_email_addresses['to'];
+        $email_addresses_to[] = $email;
 
-            // Development
-            $email_addresses = ['oliver@mollo.ch'];
-        } else {
-
-            // Production
-            $email_addresses = ['oliver@mollo.ch', 'oliver@mollo.ch', $email];
-        }
-
-        foreach ($email_addresses as $email_address) {
+        foreach ($email_addresses_to as $email_address_to) {
 
             $message_html = self::generateMessageHtml($message_html_body);
 
-            if ($test) {
-                //   dpm('[test] send to - ' . $email_address);
-
-            } else {
                 $data['title'] = $email_title;
                 $data['message_plain'] = $build_plain;
                 $data['message_html'] = $message_html;
-                $data['from'] = "oliver@mollo.ch";
-                $data['to'] = $email_address;
-
+                $data['from'] = $email_address_from;
+                $data['to'] = $email_address_to;
 
                 self::sendmail($data);
-            }
+
         }
 
-            return true;
+        return true;
 
     }
 
@@ -236,9 +223,6 @@ trait CouponTrait
         $params['message_html'] = $data['message_html'];
         $params['message_plain'] = $data['message_html'];
 
-      //   $params['message_plain'] = 'TEST Body Plain';
-      //   $params['message_html'] = '<h1>TEST Body Html</h1>';
-
         $params['from'] = $data['from'];
         $to = $data['to'];
 
@@ -246,7 +230,7 @@ trait CouponTrait
         // System
         $mailManager = \Drupal::service('plugin.manager.mail');
         $module = 'smmg_coupon';
-         $key = 'EMAIL_SMTP';
+        $key = 'EMAIL_SMTP';
         $langcode = \Drupal::currentUser()->getPreferredLangcode();
         $send = true;
 
@@ -254,7 +238,6 @@ trait CouponTrait
         // Send
         $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 
-        dpm($result);
         if ($result['result'] != TRUE) {
 
             $message = t('There was a problem sending your email notification to @email.', ['@email' => $to]);
@@ -269,7 +252,6 @@ trait CouponTrait
         }
 
     }
-
 
 
     public static function generateMessageHtml($message)
@@ -289,5 +271,38 @@ trait CouponTrait
 
         // HTML Output
         return $html_file;
+    }
+
+
+    public static function getEmailAddressesFromConfig()
+    {
+        $email['from'] = '';
+        $email['to'] = [];
+
+        $config = \Drupal::config('smmg_coupon.settings');
+
+        $email_from = $config->get('email_from');
+        $str_multible_email_to = $config->get('email_to');
+
+        $email_from = trim($email_from);
+        $is_valid = \Drupal::service('email.validator')->isValid($email_from);
+
+        if ($is_valid) {
+            $email['from'] = $email_from;
+        }
+
+
+        $arr_email_to = explode(",", $str_multible_email_to);
+
+        foreach ($arr_email_to as $email_to) {
+            $email_to = trim($email_to);
+            $is_valid = \Drupal::service('email.validator')->isValid($email_to);
+            if ($is_valid) {
+                $email['to'][] = $email_to;
+            }
+
+        }
+
+        return $email;
     }
 }

@@ -21,8 +21,8 @@ class CouponForm extends FormBase
     public $number_options;
     public $amount_options;
     public $currency;
-    public $text_coupon;
-    public $text_coupons;
+    public $coupon_singular;
+    public $coupon_plural;
     public $text_number;
     public $text_amount;
     public $text_add_coupons;
@@ -34,7 +34,6 @@ class CouponForm extends FormBase
     public function __construct()
     {
 
-        $this->currency = "SFr";
         $this->number_options = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         // Load Coupons Amount
@@ -42,12 +41,29 @@ class CouponForm extends FormBase
         $this->amount_options = Helper::getTermsByID($vid);
 
         // Text
-        $this->text_coupon = t('Coupon');
-        $this->text_coupons = t('Coupons');
+        $this->coupon_singular = t('Coupon');
+        $this->coupon_plural = t('Coupons');
         $this->text_add_coupons = t('Add another Coupon');
         $this->text_total = t('Total');
-        $this->text_number = t('Anzahl');
-        $this->text_amount = t('Betrag');
+        $this->text_number = t('Number');
+        $this->text_amount = t('Amount');
+
+
+        // from Config
+        $config = \Drupal::config('smmg_coupon.settings');
+        $this->currency = $config->get('currency');
+
+        // Coupon Name from Settings
+        $coupon_name_singular = $config->get('coupon_name_singular');
+        $coupon_name_plural = $config->get('coupon_name_plural');
+
+        if(!empty($coupon_name_singular)){
+            $this->coupon_singular = $coupon_name_singular;
+        }
+        if(!empty($coupon_name_plural)){
+            $this->coupon_plural = $coupon_name_plural;
+        }
+
 
     }
 
@@ -77,9 +93,11 @@ class CouponForm extends FormBase
         ]);
 
         // JS and CSS
-        $form['#attached']['library'][] = 'smmg_coupon/smmg_coupon.main';
+        $form['#attached']['library'][] = 'smmg_coupon/smmg_coupon.form';
         $form['#attached']['drupalSettings']['coupon']['numberOptions'] = $this->number_options;
         $form['#attached']['drupalSettings']['coupon']['amountOptions'] = $this->amount_options;
+        $form['#attached']['drupalSettings']['coupon']['couponSingular'] = $this->coupon_singular;
+        $form['#attached']['drupalSettings']['coupon']['couponPlural'] = $this->coupon_plural;
 
         // Disable browser HTML5 validation
         $form['#attributes']['novalidate'] = 'novalidate';
@@ -92,7 +110,7 @@ class CouponForm extends FormBase
 
         $form['coupon']['table'] = [
             '#type' => 'fieldset',
-            '#title' => $this->t('Order Coupons'),
+            '#title' => $this->coupon_plural,
             '#attributes' => ['class' => ['coupon-block']],
         ];
 
@@ -201,7 +219,7 @@ class CouponForm extends FormBase
             '#prefix' => '<div id="coupon-table-total" class="coupon-table-total">
                 <span class="coupon-table-total-total">' . $this->text_total . ':</span>
                 <span class="coupon-table-total-number">0</span> 
-                <span class="coupon-table-total-number-label">' . $this->text_coupons . '</span>
+                <span class="coupon-table-total-number-label">' . $this->coupon_plural . '</span>
                 <span class="coupon-table-total-amount">0</span>
                 <span class="coupon-table-total-unit">' . $this->currency . '</span>
                 </div>',

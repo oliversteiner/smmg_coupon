@@ -1,0 +1,5 @@
+smmg_coupon.config:
+  title: 'Coupon Translatable config'
+  base_route_name: smmg_coupon.admin.config
+  names:
+    - smmg_coupon.config

@@ -7,3 +7,14 @@ smmg_coupon.main:
   dependencies:
     - core/jquery
     - core/jquery.once
+
+smmg_coupon.form:
+  css:
+    theme:
+      assets/css/smmg_coupon.css: {}
+      assets/css/smmg_coupon_form.css: {}
+  js:
+    assets/js/smmgCouponForm.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once

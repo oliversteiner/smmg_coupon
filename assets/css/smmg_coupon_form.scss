@@ -1,0 +1,59 @@
+$coupon-accent: rgb(36, 37, 145);
+$coupon-accent-light: rgb(59, 55, 183);
+$coupon-accent-dark: rgb(0, 16, 87);
+
+$form-max-width: 400px;
+$text-block-width: 300px;
+$color-text-info: rgb(110, 110, 110);
+$block-spacing: 25px;
+$color-form-background: #f6f6f6;
+$color-border: #dbdbdb;
+
+// FieldSet / Panels:
+#edit-table,
+#edit-postal-address,
+#edit-action {
+  border: none;
+  margin-bottom: 3rem;
+
+  div.panel-heading {
+    //  display: none;
+  }
+
+  label {
+    margin-bottom: .1rem;
+  }
+
+  input,
+  select {
+    border: none;
+    background-color: $color-form-background;
+    margin-bottom: 0.1rem;
+  }
+
+}
+
+
+// Add Coupon
+.coupon-table-add {
+  margin: 10px;
+  padding: 5px;
+  border: 1px transparent solid;
+  color: silver;
+  cursor: pointer;
+
+  &:hover {
+    color: black;
+
+  }
+
+  &:active {
+    color: green;
+  }
+
+  div.fontawesome-icon {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+}

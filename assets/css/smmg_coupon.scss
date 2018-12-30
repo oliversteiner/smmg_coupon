@@ -29,30 +29,7 @@ $color-border: #dbdbdb;
 }
 
 
-// FieldSet / Panels:
-#edit-table,
-#edit-postal-address,
-#edit-action {
-  border: none;
-  margin-bottom: 3rem;
 
-  div.panel-heading {
-    //  display: none;
-  }
-
-  label {
-    margin-bottom: .1rem;
-  }
-
-  input,
-  select {
-    border: none;
-    background-color: $color-form-background;
-    margin-bottom: 0.1rem;
-  }
-
-
-}
 
 .coupon-table-row{
   border: none;
@@ -86,10 +63,7 @@ $color-border: #dbdbdb;
 #edit-action-yes,
 #edit-back-to-front {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin: 20px auto;
   text-align: center;
 
 }
@@ -118,7 +92,6 @@ $color-border: #dbdbdb;
 .coupon-table-delete {
   display: inline-block;
   min-width: 70px;
-  // border: 1px solid silver;
   text-align: center;
 
 
@@ -156,29 +129,7 @@ $color-border: #dbdbdb;
   }
 }
 
-// Add Coupon
-.coupon-table-add {
-  margin: 10px;
-  padding: 5px;
-  border: 1px transparent solid;
-  color: silver;
-  cursor: pointer;
 
-  &:hover {
-    color: black;
-
-  }
-
-  &:active {
-    color: green;
-  }
-
-  div.fontawesome-icon {
-    display: inline-block;
-    margin-right: 10px;
-  }
-
-}
 
 
 // Total

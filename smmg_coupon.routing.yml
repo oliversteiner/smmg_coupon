@@ -1,3 +1,16 @@
+
+# Settings
+# ---------------------------------
+#
+smmg_coupon.settings:
+  path: '/admin/structure/smmg_coupon/settings'
+  defaults:
+    _form: '\Drupal\smmg_coupon\Form\CouponSettingsForm'
+    _title: 'Coupon Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+
 # Coupon
 # ---------------------------------
 #
@@ -50,3 +63,4 @@ smmg_coupon.coupon_sandbox_send_email:
     token: null
   requirements:
     _permission: 'access content'
+

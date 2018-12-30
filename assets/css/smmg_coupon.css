@@ -12,25 +12,6 @@
   .smmg-coupon-thank-you-form fieldset {
     margin: 0; }
 
-#edit-table,
-#edit-postal-address,
-#edit-action {
-  border: none;
-  margin-bottom: 3rem; }
-  #edit-table label,
-  #edit-postal-address label,
-  #edit-action label {
-    margin-bottom: .1rem; }
-  #edit-table input,
-  #edit-table select,
-  #edit-postal-address input,
-  #edit-postal-address select,
-  #edit-action input,
-  #edit-action select {
-    border: none;
-    background-color: #f6f6f6;
-    margin-bottom: 0.1rem; }
-
 .coupon-table-row {
   border: none; }
 
@@ -54,10 +35,7 @@
 #edit-action-yes,
 #edit-back-to-front {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin: 20px auto;
   text-align: center; }
 
 .coupon-table-header {
@@ -99,20 +77,6 @@
     color: black; }
   .coupon-table-delete:active {
     color: red; }
-
-.coupon-table-add {
-  margin: 10px;
-  padding: 5px;
-  border: 1px transparent solid;
-  color: silver;
-  cursor: pointer; }
-  .coupon-table-add:hover {
-    color: black; }
-  .coupon-table-add:active {
-    color: green; }
-  .coupon-table-add div.fontawesome-icon {
-    display: inline-block;
-    margin-right: 10px; }
 
 .coupon-table-total {
   border-top: 1px solid #dbdbdb;
