@@ -3,6 +3,7 @@
 
 namespace Drupal\smmg_coupon\Utility;
 
+use Drupal\Core\Link;
 use Drupal\node\Entity\Node;
 use Drupal\small_messages\Utility\Helper;
 use Drupal\smmg_coupon\Controller\CouponController;
@@ -153,9 +154,14 @@ trait CouponTrait
 
     private static function sendNotivicationMailNewCoupon($coupon_order_nid, $token = null)
     {
+        // Load Settings
+        $config = \Drupal::config('smmg_coupon.settings');
+        $config_email_test = $config->get('email_test');
 
+        // Load Templates
         $templates = CouponController::getTemplates();
 
+        // Build Emailadresses
         $config_email_addresses = self::getEmailAddressesFromConfig();
 
         // load Data
@@ -164,7 +170,7 @@ trait CouponTrait
         // Data
         $first_name = $data['address']['first_name'];
         $last_name = $data['address']['last_name'];
-        $email = $data['address']['email'];
+        $email_subscriber = $data['address']['email'];
 
         $title = t('Order Coupon');
         $email_title = "$title: $first_name $last_name";
@@ -179,6 +185,7 @@ trait CouponTrait
             ],
         ];
 
+        // Render Twig Template
         $message_html_body = \Drupal::service('renderer')->render($build_html);
 
         // Plain
@@ -192,10 +199,21 @@ trait CouponTrait
         ];
 
 
-        // Send to
+        // Get Email Addresses
         $email_address_from = $config_email_addresses['from'];
         $email_addresses_to = $config_email_addresses['to'];
-        $email_addresses_to[] = $email;
+
+
+        // Testmode - Dont send email to Subscriber if "test mode" is checked on settings page.
+        if ($config_email_test == 1) {
+            // test mode active
+            $link = Link::createFromRoute(t('Config Page'), 'smmg_coupon.settings')->toString();
+            \Drupal::messenger()->addWarning(t("Test mode active. No email was sent to the subscriber. Disable test mode on @link.", array('@link' => $link)));
+
+        } else {
+            // Add Subscriber email to email addresses
+            $email_addresses_to[] = $email_subscriber;
+        }
 
         foreach ($email_addresses_to as $email_address_to) {
 
@@ -207,7 +225,7 @@ trait CouponTrait
             $data['from'] = $email_address_from;
             $data['to'] = $email_address_to;
 
-            self::sendmail($data);
+            // self::sendmail($data);
 
         }
 
@@ -278,6 +296,8 @@ trait CouponTrait
         $config = \Drupal::config('smmg_coupon.settings');
 
         $email_from = $config->get('email_from');
+        $config_email_test = $config->get('email_test');
+
         $str_multible_email_to = $config->get('email_to');
 
         $email_from = trim($email_from);

@@ -33,7 +33,7 @@ class CouponSettingsForm extends ConfigFormBase
     {
         $config = $this->config('smmg_coupon.settings');
 
-        $options_path_type = ['module' => 'Module', 'theme' => 'Theme'];
+        $options_path_type = ['included'=> 'Included', 'module' => 'Module', 'theme' => 'Theme'];
 
 
         // Fieldset General
@@ -42,7 +42,9 @@ class CouponSettingsForm extends ConfigFormBase
         //   - Coupon Name Plural
 
         //  Fieldset Email
-        //   - Email from
+        //   - Email Address From
+        //   - Email Address To
+        //   - Email Test
         //
         //
         // Fieldset Twig Templates
@@ -107,6 +109,13 @@ class CouponSettingsForm extends ConfigFormBase
             '#type' => 'textfield',
             '#title' => $this->t('Email: to (sale@example.com, info@example.com)'),
             '#default_value' => $config->get('email_to'),
+        );
+
+        // - Email Test
+        $form['email']['email_test'] = array(
+            '#type' => 'checkbox',
+            '#title' => $this->t('Testmode: Don\'t send email to Subscriber'),
+            '#default_value' => $config->get('email_test'),
         );
 
         // Fieldset Twig Templates
@@ -188,11 +197,12 @@ class CouponSettingsForm extends ConfigFormBase
             ->set('email_from', $form_state->getValue('email_from'))
             // - Email to
             ->set('email_to', $form_state->getValue('email_to'))
+            // - Email Test
+            ->set('email_test', $form_state->getValue('email_test'))
             //
             //
             // Fieldset Twig Templates
             // -------------------------------------------------------------
-            //
             // - Module or Theme
             ->set('get_path_type', $form_state->getValue('get_path_type'))
             // - Name of Module or Theme
