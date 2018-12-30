@@ -304,53 +304,11 @@ trait CouponTrait
 
     public static function getTemplates()
     {
-        $templates = [];
-
-        // Template list
+        $module = 'smmg_coupon';
         $template_names = ['thank_you', 'email_html', 'email_plain'];
 
-        // Default Names
-        $default_directory = "templates";
-        $default_root_type = "module";
-        $default_module_name = "smmg_coupon";
-        $default_template_prefix = "smmg-coupon-";
-        $default_template_suffix = ".html.twig";
 
-        // Get Config
-        $config = \Drupal::config('smmg_coupon.settings');
-
-        // Load Path Module from Settings
-        $config_root_type = $config->get('get_path_type');
-        $config_module_name = $config->get('get_path_name');
-
-        foreach ($template_names as $template_name) {
-
-            // change "_" with "-"
-            $template_name_url = str_replace('_', '-', $template_name);
-
-            // Default
-            $root_type = $default_root_type;
-            $module_name = $default_module_name;
-            $template_full_name = '/' . $default_directory . '/' . $default_template_prefix . $template_name_url . $default_template_suffix;
-
-            // If Path Module is set
-            if ($config_root_type && $config_module_name) {
-                $root_type = $config_root_type;
-                $module_name = $config_module_name;
-
-                // If Template Name is set
-                $config_template_name = $config->get('template_' . $template_name);
-                if ($config_template_name) {
-                    $template_full_name = $config_template_name;
-                }
-
-            }
-
-            $template_path = drupal_get_path($root_type, $module_name) . $template_full_name;
-
-            // output
-            $templates[$template_name] = $template_path;
-        }
+        $templates = Helper::getTemplates($module, $template_names);
 
 
         return $templates;
