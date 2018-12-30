@@ -4,6 +4,7 @@ namespace Drupal\smmg_coupon\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\smmg_coupon\Controller\CouponController;
 
 class CouponSettingsForm extends ConfigFormBase
 {
@@ -31,8 +32,13 @@ class CouponSettingsForm extends ConfigFormBase
      */
     public function buildForm(array $form, FormStateInterface $form_state)
     {
+        // Load Settings
         $config = $this->config('smmg_coupon.settings');
 
+        // load all Template Names
+        $template_list = CouponController::getTemplateNames();
+
+        // Options for Root Path
         $options_path_type = ['included'=> 'Included', 'module' => 'Module', 'theme' => 'Theme'];
 
 
@@ -147,27 +153,26 @@ class CouponSettingsForm extends ConfigFormBase
             '#default_value' => $config->get('get_path_name'),
         );
 
-        //   - Template Thank You
-        $form['templates']['template_thank_you'] = array(
-            '#type' => 'textfield',
-            '#title' => $this->t('Template Thank You'),
-            '#default_value' => $config->get('template_thank_you'),
+        //   - Root of Templates
+        $form['templates']['templates'] = array(
+            '#markup' => $this->t('Templates'),
         );
 
-        //   - Template Email HTML
-        $form['templates']['template_email_html'] = array(
-            '#type' => 'textfield',
-            '#title' => $this->t('Template Email Html'),
-            '#default_value' => $config->get('template_email_html'),
-        );
+        //  Twig Templates
+        // -------------------------------------------------------------
 
-        //   - Template Email Plain
-        $form['templates']['template_email_plain'] = array(
-            '#type' => 'textfield',
-            '#title' => $this->t('Template Email Plain'),
-            '#default_value' => $config->get('template_email_plain'),
-        );
+        foreach ($template_list as $template) {
 
+            $name = str_replace('_', ' ', $template);
+            $name = ucwords(strtolower($name));
+            $name = 'Template ' . $name;
+
+            $form['templates']['template_' . $template] = array(
+                '#type' => 'textfield',
+                '#title' => $name,
+                '#default_value' => $config->get('template_' . $template),
+            );
+        }
 
         return parent::buildForm($form, $form_state);
     }
@@ -177,6 +182,9 @@ class CouponSettingsForm extends ConfigFormBase
      */
     public function submitForm(array &$form, FormStateInterface $form_state)
     {
+
+        $template_list = CouponController::getTemplateNames();
+
         // Retrieve the configuration
         $this->configFactory->getEditable('smmg_coupon.settings')
             //
@@ -207,20 +215,19 @@ class CouponSettingsForm extends ConfigFormBase
             ->set('get_path_type', $form_state->getValue('get_path_type'))
             // - Name of Module or Theme
             ->set('get_path_name', $form_state->getValue('get_path_name'))
-            // - Template Thank You
-            ->set('template_thank_you', $form_state->getValue('template_thank_you'))
-            // - Template Email HTML
-            ->set('template_email_html', $form_state->getValue('template_email_html'))
-            // - Template Email Plain
-            ->set('template_email_plain', $form_state->getValue('template_email_plain'))
             //
-            // Fieldset Fields for Coupon
-            // -------------------------------------------------------------
-//
-            //   - Number
-            //   - Amount
-
             ->save();
+
+        //  Twig Templates
+        // -------------------------------------------------------------
+        $config = $this->configFactory->getEditable('smmg_newsletter.settings');
+
+        foreach ($template_list as $template) {
+            $template_name = 'template_' . $template;
+            $config->set($template_name, $form_state->getValue($template_name));
+        }
+
+        $config->save();
 
         parent::submitForm($form, $form_state);
     }

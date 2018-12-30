@@ -321,18 +321,6 @@ trait CouponTrait
         return $email;
     }
 
-    public static function getTemplates()
-    {
-        $module = 'smmg_coupon';
-        $template_names = ['thank_you', 'email_html', 'email_plain'];
-
-
-        $templates = Helper::getTemplates($module, $template_names);
-
-
-        return $templates;
-    }
-
     public static function newUnitOrder($number, $amount)
     {
         $output = [
@@ -465,6 +453,26 @@ trait CouponTrait
 
 
         return $output;
+    }
+
+    public static function getTemplateNames()
+    {
+        $templates = [
+            'thank_you',
+            'email_html',
+            'email_plain',
+        ];
+
+        return $templates;
+    }
+
+    public static function getTemplates()
+    {
+        $module = 'smmg_coupon';
+        $template_names = self::getTemplateNames();
+        $templates = Helper::getTemplates($module, $template_names);
+
+        return $templates;
     }
 
 }
