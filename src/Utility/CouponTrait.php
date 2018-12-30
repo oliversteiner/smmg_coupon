@@ -296,7 +296,6 @@ trait CouponTrait
         $config = \Drupal::config('smmg_coupon.settings');
 
         $email_from = $config->get('email_from');
-        $config_email_test = $config->get('email_test');
 
         $str_multible_email_to = $config->get('email_to');
 

@@ -84,10 +84,6 @@ class CouponController extends ControllerBase
         }
 
         $templates = $this->getTemplates();
-
-
-
-
         $template = file_get_contents($templates['thank_you']);
         $build = [
             'description' => [
