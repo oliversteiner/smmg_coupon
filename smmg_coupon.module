@@ -8,6 +8,7 @@
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\node\NodeInterface;
 use Drupal\small_messages\Utility\Helper;
 
 /**
@@ -142,8 +143,15 @@ function smmg_coupon_mail($key, &$message, $params)
 
 }
 
-
-function smmg_coupon_node_access(\Drupal\node\NodeInterface $node, $op, AccountInterface $account)
+/**
+ * Implements hook_node_access().
+ *
+ * @param NodeInterface $node
+ * @param $op
+ * @param AccountInterface $account
+ * @return mixed
+ */
+function smmg_coupon_node_access(NodeInterface $node, $op, AccountInterface $account)
 {
     $bundle_id = 'coupon_order';
     $role_id = 'smmg_coupon';
