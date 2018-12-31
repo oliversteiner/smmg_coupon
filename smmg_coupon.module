@@ -106,6 +106,9 @@ function smmg_coupon_inline_entity_form_table_fields_alter(&$fields, $context)
 
 /**
  * Implements hook_mail().
+ * @param $key
+ * @param $message
+ * @param $params
  */
 function smmg_coupon_mail($key, &$message, $params)
 {
@@ -153,10 +156,10 @@ function smmg_coupon_mail($key, &$message, $params)
  */
 function smmg_coupon_node_access(NodeInterface $node, $op, AccountInterface $account)
 {
-    $bundle_id = 'coupon_order';
+    $restricted_bundles = ['coupon_order', 'coupon_unit'];
     $role_id = 'smmg_coupon';
 
-    $bundle = $node->bundle();
+    $bundle_id = $node->bundle();
     $roles = $account->getRoles();
 
     // Default checks
@@ -169,10 +172,12 @@ function smmg_coupon_node_access(NodeInterface $node, $op, AccountInterface $acc
 
         if ($op == 'view' && $parameter_node == $node->id()) {
 
-            // Restrict access to full node
-            if ($bundle == $bundle_id && in_array($role_id, $roles)) {
+            // Allow for admin roles
+            if (in_array($bundle_id, $restricted_bundles) && in_array($role_id, $roles)) {
                 return AccessResult::neutral();
+
             } else {
+                // Restrict access to full node for others
                 return AccessResult::forbidden();
             }
         }
