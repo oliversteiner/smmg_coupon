@@ -5,34 +5,38 @@
  * Contains smmg_coupon.module.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\small_messages\Utility\Helper;
 
 /**
  * Implements hook_help().
  */
-function smmg_coupon_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Main module help for the smmg_coupon module.
-    case 'help.page.smmg_coupon':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Coupon Module for Small Messages') . '</p>';
-      return $output;
+function smmg_coupon_help($route_name, RouteMatchInterface $route_match)
+{
+    switch ($route_name) {
+        // Main module help for the smmg_coupon module.
+        case 'help.page.smmg_coupon':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('Coupon Module for Small Messages') . '</p>';
+            return $output;
 
-    default:
-  }
+        default:
+    }
 }
 
 /**
  * Implements hook_theme().
  */
-function smmg_coupon_theme() {
-  return [
-    'smmg_coupon' => [
-      'render element' => 'children',
-    ],
-  ];
+function smmg_coupon_theme()
+{
+    return [
+        'smmg_coupon' => [
+            'render element' => 'children',
+        ],
+    ];
 }
 
 
@@ -102,7 +106,8 @@ function smmg_coupon_inline_entity_form_table_fields_alter(&$fields, $context)
 /**
  * Implements hook_mail().
  */
-function smmg_coupon_mail($key, &$message, $params) {
+function smmg_coupon_mail($key, &$message, $params)
+{
 
     switch ($key) {
 
@@ -134,5 +139,38 @@ function smmg_coupon_mail($key, &$message, $params) {
             $message['body'][] = "\r\n-- --\r\n";
             break;
     }
+
+}
+
+
+function smmg_coupon_node_access(\Drupal\node\NodeInterface $node, $op, AccountInterface $account)
+{
+    $bundle_id = 'coupon_order';
+    $role_id = 'smmg_coupon';
+
+    $bundle = $node->bundle();
+    $roles = $account->getRoles();
+
+    // Default checks
+    if (!is_object($node)) {
+        return AccessResult::neutral();
+    } else {
+
+        // block http://example.com/node/123
+        $parameter_node = \Drupal::routeMatch()->getRawParameter('node');
+
+        if ($op == 'view' && $parameter_node == $node->id()) {
+
+            // Restrict access to full node
+            if ($bundle == $bundle_id && in_array($role_id, $roles)) {
+                return AccessResult::neutral();
+            } else {
+                return AccessResult::forbidden();
+            }
+        }
+    }
+
+    // Default
+    return AccessResult::neutral();
 
 }
