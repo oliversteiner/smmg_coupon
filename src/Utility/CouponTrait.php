@@ -195,7 +195,7 @@ trait CouponTrait
         $new_unit_order = $storage->create(
             [
                 'type' => 'coupon_unit',
-                'status' => 1, //(1 or 0): published or not
+                'status' => 0, //(1 or 0): published or not
                 'promote' => 0, //(1 or 0): promoted to front page
                 'field_coupon_number' => $number,
                 'field_coupon_amount' => $amount,
@@ -272,7 +272,7 @@ trait CouponTrait
             [
                 'type' => 'coupon_order',
                 'title' => $title,
-                'status' => 1, //(1 or 0): published or not
+                'status' => 0, //(1 or 0): published or not
                 'promote' => 0, //(1 or 0): promoted to front page
                 'field_gender' => $gender,
                 'field_first_name' => $first_name,
