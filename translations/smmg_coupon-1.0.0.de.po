@@ -1,0 +1,160 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2019-01-05 15:36+0100\n"
+"PO-Revision-Date: 2019-01-05 15:45+0100\n"
+"Last-Translator: Oliver Steiner <oliver@mollo.ch>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: t\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: templates\n"
+"X-Poedit-SearchPath-2: assets\n"
+
+#: src/Form/CouponForm.php:45 src/Utility/CouponTrait.php:127
+msgid "Coupon"
+msgstr "Gutschein"
+
+#: src/Form/CouponForm.php:46 src/Utility/CouponTrait.php:128
+msgid "Coupons"
+msgstr "Gutscheine"
+
+#: src/Form/CouponForm.php:47
+msgid "Add another Coupon"
+msgstr "Einen weiteren Gutschein hinzufügen"
+
+#: src/Form/CouponForm.php:48
+msgid "Total"
+msgstr "Gesamt"
+
+#: src/Form/CouponForm.php:49
+msgid "Number"
+msgstr "Nummer"
+
+#: src/Form/CouponForm.php:50
+msgid "Amount"
+msgstr "Betrag"
+
+#: src/Form/CouponForm.php:235
+msgid "Address"
+msgstr "Adresse"
+
+#: src/Form/CouponForm.php:240
+msgid "Please Chose"
+msgstr "Bitte wählen"
+
+#: src/Form/CouponForm.php:254 src/Form/CouponForm.php:425
+msgid "Gender"
+msgstr "Titel"
+
+#: src/Form/CouponForm.php:265 src/Form/CouponForm.php:433
+msgid "First Name"
+msgstr "Vorname"
+
+#: src/Form/CouponForm.php:277 src/Form/CouponForm.php:441
+msgid "Last Name"
+msgstr "Nachname"
+
+#: src/Form/CouponForm.php:288 src/Form/CouponForm.php:449
+msgid "Street and Number"
+msgstr "Strasse und Anzahl"
+
+#: src/Form/CouponForm.php:299 src/Form/CouponForm.php:457
+msgid "ZIP"
+msgstr "PLZ"
+
+#: src/Form/CouponForm.php:309 src/Form/CouponForm.php:465
+msgid "City"
+msgstr "Stadt"
+
+#: src/Form/CouponForm.php:320
+msgid "Email"
+msgstr "E-Mail"
+
+#: src/Form/CouponForm.php:331
+msgid "Phone"
+msgstr "Telefon"
+
+#: src/Form/CouponForm.php:345
+msgid "I would like to receive the newsletter."
+msgstr "Ich möchte den Newsletter erhalten."
+
+#: src/Form/CouponForm.php:369
+msgid "Order Coupons"
+msgstr "Gutscheinbestellung"
+
+#: src/Form/CouponForm.php:407
+msgid "An email address is required."
+msgstr "Eine E-Mail-Adresse ist erforderlich."
+
+#: src/Form/CouponForm.php:416
+msgid "Something is wrong with this email address."
+msgstr "Mit dieser E-Mail-Adresse stimmt etwas nicht."
+
+#: src/Form/CouponForm.php:428 src/Form/CouponForm.php:436
+#: src/Form/CouponForm.php:444 src/Form/CouponForm.php:452
+#: src/Form/CouponForm.php:460 src/Form/CouponForm.php:468
+msgid "Please fill in the field \"@field\""
+msgstr "Bitte füllen Sie das Feld \"@field\" aus"
+
+#: src/Form/CouponSettingsForm.php:73
+msgid "General"
+msgstr "Allgemein"
+
+#: src/Form/CouponSettingsForm.php:80
+msgid "Currency (USD, EUR, SFr)"
+msgstr "Währung (USD, EUR, SFr)"
+
+#: src/Form/CouponSettingsForm.php:87
+msgid "Coupon Name Singular"
+msgstr "Gutschein Name Singular"
+
+#: src/Form/CouponSettingsForm.php:94
+msgid "Coupon Name Plural"
+msgstr "Gutschein-Name Plural"
+
+#: src/Form/CouponSettingsForm.php:102
+msgid "Email Settings"
+msgstr "E-Mail Einstellungen"
+
+#: src/Form/CouponSettingsForm.php:109
+msgid "Email: From (newsletter@example.com)"
+msgstr "Email: Von (newsletter@example.com)"
+
+#: src/Form/CouponSettingsForm.php:116
+msgid "Email: to (sale@example.com, info@example.com)"
+msgstr "Email: An (sale@example.com, info@example.com)"
+
+#: src/Form/CouponSettingsForm.php:123
+msgid "Testmode: Don't send email to Subscriber"
+msgstr "Testmodus: Es werden keine E-Mails an Abonnenten versendet"
+
+#: src/Form/CouponSettingsForm.php:132 src/Form/CouponSettingsForm.php:158
+msgid "Templates"
+msgstr "Vorlagen"
+
+#: src/Form/CouponSettingsForm.php:138
+msgid "Path of Templates"
+msgstr "Vorlagen Verzeichnis"
+
+#: src/Form/CouponSettingsForm.php:145
+msgid "Module or Theme"
+msgstr "Modul oder Theme"
+
+#: src/Form/CouponSettingsForm.php:152
+msgid "Name of Module or Theme"
+msgstr "Name des Moduls oder des Themes"
+
+#: src/Utility/CouponTrait.php:211
+msgid "Information successfully saved"
+msgstr "Informationen gespeichert"
+
+#: src/Utility/CouponTrait.php:307
+msgid "Coupon Order successfully saved"
+msgstr "Gutscheinbestellung erfolgreich"
