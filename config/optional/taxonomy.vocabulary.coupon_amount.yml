@@ -1,0 +1,9 @@
+uuid: 3d41dfde-a4ce-4750-8a36-9d4fe7c2072e
+langcode: und
+status: true
+dependencies: {  }
+name: 'Coupon Amount'
+vid: coupon_amount
+description: ''
+hierarchy: 0
+weight: 0

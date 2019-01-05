@@ -1,0 +1,11 @@
+uuid: f53a3e7b-e03e-4aec-8637-b5d7b8fe3939
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.coupon_unit
+id: node.coupon_unit
+target_entity_type_id: node
+target_bundle: coupon_unit
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,38 @@
+uuid: 6f011864-f350-4d18-9d63-66218ccce9ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.coupon_unit.body
+    - field.field.node.coupon_unit.field_coupon_amount
+    - field.field.node.coupon_unit.field_coupon_number
+    - node.type.coupon_unit
+id: node.coupon_unit.default
+targetEntityType: node
+bundle: coupon_unit
+mode: default
+content:
+  field_coupon_amount:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_coupon_number:
+    weight: 0
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+hidden:
+  body: true
+  created: true
+  langcode: true
+  moderation_state: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  title: true
+  uid: true

@@ -1,0 +1,31 @@
+uuid: 31281438-44cb-4b82-be3a-452b47dfe4eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.coupon_order.body
+    - node.type.coupon_order
+  module:
+    - text
+    - user
+id: node.coupon_order.teaser
+targetEntityType: node
+bundle: coupon_order
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true

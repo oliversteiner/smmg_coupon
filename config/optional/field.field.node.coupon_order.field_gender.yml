@@ -1,0 +1,29 @@
+uuid: 7c8db479-0599-4252-ad54-910beedb6c18
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gender
+    - node.type.coupon_order
+    - taxonomy.vocabulary.gender
+id: node.coupon_order.field_gender
+field_name: field_gender
+entity_type: node
+bundle: coupon_order
+label: Gender
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      gender: gender
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

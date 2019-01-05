@@ -1,0 +1,22 @@
+uuid: 320cb948-aec0-4774-807b-e53758abc25f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.coupon_unit
+id: node.coupon_unit.status
+field_name: status
+entity_type: node
+bundle: coupon_unit
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,25 @@
+uuid: f8c6ec03-2ccc-4d40-84e1-e2e078aaa477
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_coupon_number
+    - node.type.coupon_unit
+id: node.coupon_unit.field_coupon_number
+field_name: field_coupon_number
+entity_type: node
+bundle: coupon_unit
+label: 'Coupon Number'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  min: 0
+  max: 99
+  prefix: ''
+  suffix: ''
+field_type: integer

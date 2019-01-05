@@ -1,0 +1,29 @@
+uuid: db9ed428-3cf1-4d35-856b-6a2dc13548ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_smmg_accounting
+    - node.type.coupon_order
+    - taxonomy.vocabulary.smmg_accounting
+id: node.coupon_order.field_smmg_accounting
+field_name: field_smmg_accounting
+entity_type: node
+bundle: coupon_order
+label: Accounting
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      smmg_accounting: smmg_accounting
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: accounting
+field_type: entity_reference

@@ -1,0 +1,21 @@
+uuid: 4c3ec781-f851-48ee-af1f-8425ae0c5f58
+langcode: en
+status: true
+dependencies:
+  module:
+    - hide_revision_field
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  hide_revision_field:
+    hide: false
+    personalizable: false
+name: 'Coupon Unit'
+type: coupon_unit
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

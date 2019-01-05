@@ -6,6 +6,7 @@ package: 'Messages'
 dependencies:
   - drupal:node
   - small_messages
+  - smmg_member
   - honeypot
   - inline_entity_form
   - auto_entitylabel

@@ -1,0 +1,20 @@
+uuid: efe44687-4d39-495c-9aa1-a254c20f46f7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_coupon_number
+field_name: field_coupon_number
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

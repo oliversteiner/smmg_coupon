@@ -1,0 +1,19 @@
+uuid: 16e721f7-5dab-4e4e-a0db-2d5f0f0819e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email
+    - node.type.coupon_order
+id: node.coupon_order.field_email
+field_name: field_email
+entity_type: node
+bundle: coupon_order
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

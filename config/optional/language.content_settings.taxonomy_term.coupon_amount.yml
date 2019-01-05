@@ -1,0 +1,11 @@
+uuid: ab89c4b3-1a60-48af-8e99-75c0cbb6fbaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.coupon_amount
+id: taxonomy_term.coupon_amount
+target_entity_type_id: taxonomy_term
+target_bundle: coupon_amount
+default_langcode: site_default
+language_alterable: false

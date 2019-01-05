@@ -1,0 +1,29 @@
+uuid: 5da3fc3d-74f7-40e4-ac8c-f14ff96553dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_smmg_origin
+    - node.type.coupon_order
+    - taxonomy.vocabulary.smmg_origin
+id: node.coupon_order.field_smmg_origin
+field_name: field_smmg_origin
+entity_type: node
+bundle: coupon_order
+label: Origin
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      smmg_origin: smmg_origin
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: member_origin
+field_type: entity_reference

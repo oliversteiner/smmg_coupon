@@ -1,0 +1,37 @@
+uuid: c64c6dc9-b755-4d2d-9784-0d7e82e08a2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.coupon_unit.body
+    - field.field.node.coupon_unit.field_coupon_amount
+    - field.field.node.coupon_unit.field_coupon_number
+    - node.type.coupon_unit
+  module:
+    - user
+id: node.coupon_unit.default
+targetEntityType: node
+bundle: coupon_unit
+mode: default
+content:
+  field_coupon_amount:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_coupon_number:
+    weight: 0
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+hidden:
+  body: true
+  langcode: true
+  links: true

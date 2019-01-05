@@ -1,0 +1,11 @@
+uuid: bba4f076-a123-4cb6-ab42-9f012d2aea32
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.coupon_order
+id: node.coupon_order
+target_entity_type_id: node
+target_bundle: coupon_order
+default_langcode: site_default
+language_alterable: false

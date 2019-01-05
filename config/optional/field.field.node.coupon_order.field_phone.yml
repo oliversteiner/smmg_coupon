@@ -1,0 +1,19 @@
+uuid: 8ce0bfdc-ed25-4192-a8c9-4b15cdd8454a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_phone
+    - node.type.coupon_order
+id: node.coupon_order.field_phone
+field_name: field_phone
+entity_type: node
+bundle: coupon_order
+label: Phone
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

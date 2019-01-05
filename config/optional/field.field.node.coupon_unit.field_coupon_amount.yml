@@ -1,0 +1,29 @@
+uuid: 2abe9b06-5c1a-4648-8e9d-36a04ae500d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_coupon_amount
+    - node.type.coupon_unit
+    - taxonomy.vocabulary.coupon_amount
+id: node.coupon_unit.field_coupon_amount
+field_name: field_coupon_amount
+entity_type: node
+bundle: coupon_unit
+label: 'Coupon Amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      coupon_amount: coupon_amount
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: coupon_amount
+field_type: entity_reference
