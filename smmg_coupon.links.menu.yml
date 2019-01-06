@@ -7,3 +7,14 @@ smmg_coupon.settings_form:
   route_name: smmg_coupon.settings
   parent:  small_messages.group.admin
   weight: 30
+
+#
+# Content > Coupons
+#
+#
+smmg_coupon.admin_coupon_orders:
+  title: 'Coupon Orders'
+  description: 'Show all Coupon Orders'
+  route_name: smmg_coupon.order_list
+  parent: 'system.admin_content'
+  weight: 80

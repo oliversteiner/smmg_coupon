@@ -10,6 +10,9 @@ smmg_coupon.settings:
   requirements:
     _permission: 'administer site configuration'
 
+smmg_coupon.order_list:
+  path: '/admin/coupon-order-list'
+
 
 # Coupon
 # ---------------------------------
