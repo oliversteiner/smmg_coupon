@@ -3,7 +3,7 @@
 # ---------------------------------
 #
 smmg_coupon.settings:
-  path: '/admin/structure/smmg_coupon/settings'
+  path: '/admin/config/small_messages/smmg_coupon'
   defaults:
     _form: '\Drupal\smmg_coupon\Form\CouponSettingsForm'
     _title: 'Coupon Settings'

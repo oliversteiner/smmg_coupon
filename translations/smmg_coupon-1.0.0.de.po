@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2019-01-05 15:36+0100\n"
-"PO-Revision-Date: 2019-01-05 23:52+0100\n"
+"PO-Revision-Date: 2019-01-06 00:34+0100\n"
 "Last-Translator: Oliver Steiner <oliver@mollo.ch>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -71,7 +71,7 @@ msgstr "PLZ"
 
 #: src/Form/CouponForm.php:309 src/Form/CouponForm.php:465
 msgid "City"
-msgstr "Stadt"
+msgstr "Ort"
 
 #: src/Form/CouponForm.php:320
 msgid "Email"

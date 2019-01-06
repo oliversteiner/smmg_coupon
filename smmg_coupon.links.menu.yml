@@ -5,4 +5,5 @@ smmg_coupon.settings_form:
   title: 'Coupon Settings'
   description: 'Configure default coupon settings'
   route_name: smmg_coupon.settings
-  parent: 'system.admin_config_content'
+  parent:  small_messages.group.admin
+  weight: 30
