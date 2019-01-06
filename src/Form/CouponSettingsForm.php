@@ -46,7 +46,7 @@ class CouponSettingsForm extends ConfigFormBase
 
 
         // Fieldset General
-        //   - Currency
+        //   - suffix
         //   - Coupon Name Singular
         //   - Coupon Name Plural
         //   - Coupon Group Default
@@ -79,11 +79,11 @@ class CouponSettingsForm extends ConfigFormBase
             '#attributes' => ['class' => ['coupon-settings-general']],
         ];
 
-        // - Currency
-        $form['general']['currency'] = array(
+        // - suffix
+        $form['general']['suffix'] = array(
             '#type' => 'textfield',
-            '#title' => $this->t('Currency (USD, EUR, SFr)'),
-            '#default_value' => $config->get('currency'),
+            '#title' => $this->t('suffix (USD, EUR, SFr)'),
+            '#default_value' => $config->get('suffix'),
         );
 
         //   - Coupon Name Singular
@@ -211,8 +211,8 @@ class CouponSettingsForm extends ConfigFormBase
             //
             // Fieldset General
             // -------------------------------------------------------------
-            // - Currency
-            ->set('currency', $form_state->getValue('currency'))
+            // - suffix
+            ->set('suffix', $form_state->getValue('suffix'))
             // - Coupon Name Singular
             ->set('coupon_name_singular', $form_state->getValue('coupon_name_singular'))
             // - Coupon Name Plural

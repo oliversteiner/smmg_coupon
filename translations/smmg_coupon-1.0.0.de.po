@@ -108,7 +108,7 @@ msgid "General"
 msgstr "Allgemein"
 
 #: src/Form/CouponSettingsForm.php:80
-msgid "Currency (USD, EUR, SFr)"
+msgid "suffix (USD, EUR, SFr)"
 msgstr "Währung (USD, EUR, SFr)"
 
 #: src/Form/CouponSettingsForm.php:87

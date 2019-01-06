@@ -47,6 +47,8 @@ function smmg_coupon_theme()
  */
 function smmg_coupon_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
+
+    dpm($form_id);
     // Coupon Order
     // --------------------------------------
     if (in_array($form_id, ['node_coupon_order_edit_form', 'node_coupon_order_form'])) {
@@ -68,7 +70,7 @@ function smmg_coupon_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
 
         // Automatic Fill Title Field
         $form['title']['#access'] = FALSE;
-        $form['#entity_builders'][] = 'custom_coupon_unit_node_title_builder';
+        $form['#entity_builders'][] = 'coupon_unit_title_builder';
     }
 }
 
@@ -220,13 +222,12 @@ function custom_lesson_node_title_builder($entity_type, NodeInterface $node, $fo
     $first_name = '';
     $last_name = '';
 
-    if (!empty($node->get('field_first_name'))) {
-        $first_name = $node->get('field_first_name')->entity->getTitle();
+    if (!empty($node)) {
+        $first_name = Helper::getFieldValue($node, 'first_name');
+        $last_name = Helper::getFieldValue($node, 'last_name');
     }
 
-    if (!empty($node->get('field_last_name'))) {
-        $last_name = $node->get('field_last_name')->entity->getTitle();
-    }
+
 
 // Build Title
     $node->setTitle($coupon_name . ' - ' . $first_name . ' ' . $last_name);
@@ -240,22 +241,23 @@ function custom_lesson_node_title_builder($entity_type, NodeInterface $node, $fo
  * @param $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function custom_coupon_unit_node_title_builder($entity_type, NodeInterface $node, $form, FormStateInterface $form_state)
+function coupon_unit_title_builder($entity_type, NodeInterface $node, $form, FormStateInterface $form_state)
 {
+    $node->setTitle('Coupon Unit');
+    $amount_list = Helper::getTermsByID('coupon_amount');
+
     $config = \Drupal::config('smmg_coupon.settings');
-    $suffix = $config->get('currency');
+    $suffix = $config->get('suffix');
 
     $number = '';
     $amount = '';
 
-    if (!empty($node->get('field_coupon_number'))) {
-        $number = $node->get('field_coupon_number')->entity->getTitle();
+    if (!empty($node)) {
+        $number = Helper::getFieldValue($node, 'coupon_number');
+        $amount = Helper::getFieldValue($node, 'coupon_amount', $amount_list);
     }
 
-    if (!empty($node->get('field_coupon_amount'))) {
-        $amount = $node->get('field_coupon_amount')->entity->getTitle();
-    }
 
 // Build Title
-    $node->setTitle($number . ' × ' . $amount . '' . $suffix);
+    $node->setTitle($number . ' × ' . $amount . ' ' . $suffix);
 }

@@ -3,6 +3,7 @@
 
 namespace Drupal\smmg_coupon\Utility;
 
+use Drupal\Core\Entity\Entity;
 use Drupal\node\Entity\Node;
 use Drupal\small_messages\Utility\Email;
 use Drupal\small_messages\Utility\Helper;
@@ -34,6 +35,7 @@ trait CouponTrait
     {
         $config = \Drupal::config('smmg_coupon.settings');
         $name_singular = $config->get('coupon_name_singular');
+        $amount_suffix = $config->get('suffix');
 
         $variables = [];
         $variables['module'] = 'Coupons';
@@ -150,7 +152,6 @@ trait CouponTrait
 
             $coupon_name_singular = t('Coupon');
             $coupon_name_plural = t('Coupons');
-            $currency = 'SFr';
 
             $number_suffix = $coupon_total_number > 1 ? $coupon_name_plural : $coupon_name_singular;
 
@@ -159,7 +160,7 @@ trait CouponTrait
             $variables['total']['amount'] = $coupon_total_amount;
 
             $variables['total']['number_suffix'] = $number_suffix;
-            $variables['total']['amount_suffix'] = $currency;
+            $variables['total']['amount_suffix'] = $amount_suffix;
 
 
             // Title
@@ -218,20 +219,24 @@ trait CouponTrait
             'nid' => FALSE,
             'message' => '',
         ];
+        $config = \Drupal::config('smmg_coupon.settings');
+        $suffix = $config->get('suffix');
 
-        $storage = \Drupal::entityTypeManager()->getStorage('node');
-        $new_unit_order = $storage->create(
+        $amount_list = Helper::getTermsByID('coupon_amount');
+        $title = $number . ' × ' . $amount_list[$amount] . ' ' . $suffix;
+        $node = \Drupal::entityTypeManager()->getStorage('node')->create(
             [
                 'type' => 'coupon_unit',
                 'status' => 0, //(1 or 0): published or not
                 'promote' => 0, //(1 or 0): promoted to front page
+                'title' => $title,
                 'field_coupon_number' => $number,
                 'field_coupon_amount' => $amount,
             ]);
 
         // Save
-        $new_unit_order->save();
-        $new_order_nid = $new_unit_order->id();
+        $node->save();
+        $new_order_nid = $node->id();
 
         // if OK
         if ($new_order_nid) {
@@ -247,7 +252,8 @@ trait CouponTrait
 
     public static function newOrder(array $data)
     {
-        dpm($data);
+        $config = \Drupal::config('smmg_coupon.settings');
+        $name_singular = $config->get('coupon_name_singular');
 
         $coupons = [];
 
@@ -283,7 +289,7 @@ trait CouponTrait
         $coupon_group = $data['coupon_group'];
 
         if ($first_name && $last_name) {
-            $title = $first_name . ' ' . $last_name;
+            $title = $name_singular. ' - '.$first_name . ' ' . $last_name;
         } else {
             $title = $email;
         }

@@ -20,7 +20,7 @@ class CouponForm extends FormBase
 
     public $number_options;
     public $amount_options;
-    public $currency;
+    public $suffix;
     public $coupon_singular;
     public $coupon_plural;
     public $text_number;
@@ -56,7 +56,7 @@ class CouponForm extends FormBase
 
         // from Config
         $config = \Drupal::config('smmg_coupon.settings');
-        $this->currency = $config->get('currency');
+        $this->suffix = $config->get('suffix');
 
         // Coupon Name from Settings
         $coupon_name_singular = $config->get('coupon_name_singular');
@@ -222,7 +222,7 @@ class CouponForm extends FormBase
                 '#value' => $default_amount,
                 '#required' => FALSE,
                 '#prefix' => '<span class="coupon-table-amount">',
-                '#suffix' => '</span> <span class="coupon-table-unit">' . $this->currency . '</span>',
+                '#suffix' => '</span> <span class="coupon-table-unit">' . $this->suffix . '</span>',
             ];
 
             if ($i != 1) {
@@ -263,7 +263,7 @@ class CouponForm extends FormBase
                 <span class="coupon-table-total-number">0</span> 
                 <span class="coupon-table-total-number-label">' . $this->coupon_plural . '</span>
                 <span class="coupon-table-total-amount">0</span>
-                <span class="coupon-table-total-unit">' . $this->currency . '</span>
+                <span class="coupon-table-total-unit">' . $this->suffix . '</span>
                 </div>',
 
         ];
