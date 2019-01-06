@@ -12,7 +12,9 @@ smmg_coupon.settings:
 
 smmg_coupon.order_list:
   path: '/admin/coupon-order-list'
-
+  defaults:
+  requirements:
+    _permission: 'access content'
 
 # Coupon
 # ---------------------------------

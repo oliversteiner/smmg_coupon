@@ -3,15 +3,11 @@ langcode: en
 status: true
 dependencies:
   module:
-    - hide_revision_field
     - menu_ui
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-  hide_revision_field:
-    hide: false
-    personalizable: false
 name: 'Coupon Unit'
 type: coupon_unit
 description: ''

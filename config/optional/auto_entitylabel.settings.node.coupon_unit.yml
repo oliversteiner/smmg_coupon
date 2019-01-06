@@ -1,7 +1,0 @@
-status: '3'
-pattern: '[node:field_coupon_number] x [node:field_coupon_amount]'
-php: 0
-escape: 0
-dependencies:
-  config:
-    - node.type.coupon_unit

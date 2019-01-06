@@ -48,16 +48,27 @@ function smmg_coupon_theme()
 function smmg_coupon_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
     // Coupon Order
+    // --------------------------------------
     if (in_array($form_id, ['node_coupon_order_edit_form', 'node_coupon_order_form'])) {
 
 
-// if Token field empty fill in automaticaly
+        // if Token field empty fill in automaticaly
         $token = Helper::generateToken();
         $form['field_smmg_token']['widget'][0]['value']['#default_value'] = $token;
 
         // Automatic Fill Title Field
         $form['title']['#access'] = FALSE;
         $form['#entity_builders'][] = 'custom_coupon_node_title_builder';
+    }
+
+    // Coupon Unit
+    // --------------------------------------
+    if (in_array($form_id, ['node_coupon_unit_edit_form', 'node_coupon_unit_form'])) {
+
+
+        // Automatic Fill Title Field
+        $form['title']['#access'] = FALSE;
+        $form['#entity_builders'][] = 'custom_coupon_unit_node_title_builder';
     }
 }
 
@@ -219,4 +230,32 @@ function custom_lesson_node_title_builder($entity_type, NodeInterface $node, $fo
 
 // Build Title
     $node->setTitle($coupon_name . ' - ' . $first_name . ' ' . $last_name);
+}
+
+/**
+ * Title builder for Coupon content type.
+ *
+ * @param $entity_type
+ * @param \Drupal\node\NodeInterface $node
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+function custom_coupon_unit_node_title_builder($entity_type, NodeInterface $node, $form, FormStateInterface $form_state)
+{
+    $config = \Drupal::config('smmg_coupon.settings');
+    $suffix = $config->get('currency');
+
+    $number = '';
+    $amount = '';
+
+    if (!empty($node->get('field_coupon_number'))) {
+        $number = $node->get('field_coupon_number')->entity->getTitle();
+    }
+
+    if (!empty($node->get('field_coupon_amount'))) {
+        $amount = $node->get('field_coupon_amount')->entity->getTitle();
+    }
+
+// Build Title
+    $node->setTitle($number . ' × ' . $amount . '' . $suffix);
 }

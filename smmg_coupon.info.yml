@@ -9,7 +9,6 @@ dependencies:
   - smmg_member
   - honeypot
   - inline_entity_form
-  - auto_entitylabel
 
 project: smmg_coupon
 version: 1.0.0
