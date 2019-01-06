@@ -32,7 +32,12 @@ trait CouponTrait
 
     public static function couponVariables($coupon_order_nid, $member_nid = null, $token = null)
     {
+        $config = \Drupal::config('smmg_coupon.settings');
+        $name_singular = $config->get('coupon_name_singular');
+
         $variables = [];
+        $variables['module'] = 'Coupons';
+
 
         $variables['address']['gender'] = '';
         $variables['address']['first_name'] = '';
@@ -155,6 +160,10 @@ trait CouponTrait
 
             $variables['total']['number_suffix'] = $number_suffix;
             $variables['total']['amount_suffix'] = $currency;
+
+
+            // Title
+            $variables['title'] = $name_singular . ' - ' . $variables['address']['first_name'] . ' ' . $variables['address']['last_name'];
         }
 
         // Member & Newsletter
