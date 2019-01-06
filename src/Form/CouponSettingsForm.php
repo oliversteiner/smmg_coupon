@@ -35,6 +35,9 @@ class CouponSettingsForm extends ConfigFormBase
         // Load Settings
         $config = $this->config('smmg_coupon.settings');
 
+        // Option Group
+        $options_coupon_group  = CouponController::getGroupOptions();
+
         // load all Template Names
         $template_list = CouponController::getTemplateNames();
 
@@ -46,6 +49,8 @@ class CouponSettingsForm extends ConfigFormBase
         //   - Currency
         //   - Coupon Name Singular
         //   - Coupon Name Plural
+        //   - Coupon Group Default
+        //   - Coupon Group Hide
 
         //  Fieldset Email
         //   - Email Address From
@@ -93,6 +98,21 @@ class CouponSettingsForm extends ConfigFormBase
             '#type' => 'textfield',
             '#title' => $this->t('Coupon Name Plural'),
             '#default_value' => $config->get('coupon_name_plural'),
+        );
+
+        //   - Coupon Group Default
+        $form['general']['coupon_group_default'] = array(
+            '#type' => 'select',
+            '#options' => $options_coupon_group,
+            '#title' => $this->t('Default Group'),
+            '#default_value' => $config->get('coupon_group_default'),
+        );
+
+        //   - Coupon Name Plural
+        $form['general']['coupon_group_hide'] = array(
+            '#type' => 'checkbox',
+            '#title' => $this->t('Hide Group'),
+            '#default_value' => $config->get('coupon_group_hide'),
         );
 
         // Fieldset Email
@@ -198,6 +218,10 @@ class CouponSettingsForm extends ConfigFormBase
             // - Coupon Name Plural
             ->set('coupon_name_plural', $form_state->getValue('coupon_name_plural'))
             //
+            // - Coupon Group Default
+            ->set('coupon_group_default', $form_state->getValue('coupon_group_default'))
+            // - Coupon Group Hide
+            ->set('coupon_group_hide', $form_state->getValue('coupon_group_hide'))
             //
             // Fieldset Email
             // -------------------------------------------------------------

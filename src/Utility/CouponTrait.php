@@ -9,6 +9,22 @@ use Drupal\small_messages\Utility\Helper;
 
 trait CouponTrait
 {
+
+    public static function getGroupOptions()
+    {
+        $option_list = [];
+
+
+        $nids = \Drupal::entityQuery('node')->condition('type', 'coupon_group')->execute();
+        $nodes = Node::loadMultiple($nids);
+
+        foreach ($nodes as $node) {
+            $option_list[$node->id()] = $node->label();
+        }
+
+        return $option_list;
+    }
+
     public static function getModuleName()
     {
         return 'smmg_coupon';
@@ -83,8 +99,11 @@ trait CouponTrait
             $variables['token'] = Helper::getFieldValue($coupon_order, 'smmg_token');
 
 
-            // Coupon Units
+            // Coupon
             // ==============================================
+            $variables['group'] = Helper::getFieldValue($coupon_order, 'coupon_group');
+
+
             $coupons = [];
 
             // Get All Coupon_unit Nids
@@ -182,7 +201,7 @@ trait CouponTrait
         return Email::getEmailAddressesFromConfig($module);
     }
 
-    public static function newUnitOrder($number, $amount)
+    public static function newCouponUnit($number, $amount)
     {
         $output = [
             'status' => FALSE,
@@ -219,6 +238,7 @@ trait CouponTrait
 
     public static function newOrder(array $data)
     {
+        dpm($data);
 
         $coupons = [];
 
@@ -228,15 +248,15 @@ trait CouponTrait
             $amount = $data['coupons'][$i]['amount'];
 
             if ($number > 0) {
-                $result = self::newUnitOrder($number, $amount);
+                $result = self::newCouponUnit($number, $amount);
                 $coupons[$i] = $result['nid'];
             }
         }
 
 
-        // Load List for origin
-        $vid = 'smmg_origin';
-        $origin_list = Helper::getTermsByName($vid);
+        // Origin
+        $origin = 'Coupon';
+        $origin_tid = Helper::getOrigin($origin);
 
         // Token
         $token = $data['token'];
@@ -251,7 +271,7 @@ trait CouponTrait
         $city = $data['city'];
         $email = $data['email'];
         $phone = $data['phone'];
-
+        $coupon_group = $data['coupon_group'];
 
         if ($first_name && $last_name) {
             $title = $first_name . ' ' . $last_name;
@@ -284,7 +304,7 @@ trait CouponTrait
                 'field_email' => $email,
 
                 // Origin
-                'field_smmg_origin' => $origin_list['coupon'],
+                'field_smmg_origin' => $origin_tid,
 
                 // Token
                 'field_smmg_token' => $token,
@@ -294,6 +314,7 @@ trait CouponTrait
 
         // coupon
         $new_order->get('field_coupon_unit')->setValue($coupons);
+        $new_order->get('field_coupon_group')->setValue($coupon_group);
 
 
         // Save

@@ -13,6 +13,8 @@ class CouponController extends ControllerBase
 
     use CouponTrait;
 
+
+
     public function getModuleName()
     {
         return 'smmg_coupon';

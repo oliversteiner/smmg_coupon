@@ -27,6 +27,9 @@ class CouponForm extends FormBase
     public $text_amount;
     public $text_add_coupons;
     public $text_total;
+    public $coupon_group_default;
+    public $coupon_group_hide;
+    public $options_coupon_group;
 
 
     /**
@@ -40,6 +43,7 @@ class CouponForm extends FormBase
         // Load Coupons Amount
         $vid = 'coupon_amount';
         $this->amount_options = Helper::getTermsByID($vid);
+
 
         // Text
         $this->coupon_singular = t('Coupon');
@@ -58,10 +62,15 @@ class CouponForm extends FormBase
         $coupon_name_singular = $config->get('coupon_name_singular');
         $coupon_name_plural = $config->get('coupon_name_plural');
 
-        if(!empty($coupon_name_singular)){
+        // Coupon Group
+        $this->options_coupon_group = CouponController::getGroupOptions();
+        $this->coupon_group_default = $config->get('coupon_group_default');
+        $this->coupon_group_hide = $config->get('coupon_group_hide');
+
+        if (!empty($coupon_name_singular)) {
             $this->coupon_singular = $coupon_name_singular;
         }
-        if(!empty($coupon_name_plural)){
+        if (!empty($coupon_name_plural)) {
             $this->coupon_plural = $coupon_name_plural;
         }
 
@@ -95,6 +104,8 @@ class CouponForm extends FormBase
 
         // JS and CSS
         $form['#attached']['library'][] = 'smmg_coupon/smmg_coupon.form';
+
+        // Data to JS
         $form['#attached']['drupalSettings']['coupon']['numberOptions'] = $this->number_options;
         $form['#attached']['drupalSettings']['coupon']['amountOptions'] = $this->amount_options;
         $form['#attached']['drupalSettings']['coupon']['couponSingular'] = $this->coupon_singular;
@@ -107,14 +118,44 @@ class CouponForm extends FormBase
         // Coupon
         // ==============================================
 
-        // Titel
+
+        // Coupon Group
+        // ------------------------------
+
+        // Default Value
+        if (empty($values['coupon_group'])) {
+            $coupon_group = $this->coupon_group_default;
+        } else {
+            $coupon_group = $values['coupon_group'];
+        }
+
+        // Hide Elem Group Select
+        if ($this->coupon_group_hide) {
+            $form['coupon_group'] = [
+                '#type' => 'hidden',
+                '#value' => $coupon_group,
+            ];
+        } else {
+
+            // Show Elem Group Select
+            $form['coupon_group'] = [
+                '#type' => 'select',
+                '#title' => '',
+                '#options' => $this->options_coupon_group,
+                '#value' => $coupon_group,
+                '#required' => FALSE,
+            ];
+        }
+
+
+        // Fieldset Coupon Unit Table
+        // ------------------------------
 
         $form['coupon']['table'] = [
             '#type' => 'fieldset',
             '#title' => $this->coupon_plural,
             '#attributes' => ['class' => ['coupon-block']],
         ];
-
 
         // Table Header
         $form['coupon']['table']['header'] = [
