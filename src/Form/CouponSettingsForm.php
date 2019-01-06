@@ -244,7 +244,7 @@ class CouponSettingsForm extends ConfigFormBase
 
         //  Twig Templates
         // -------------------------------------------------------------
-        $config = $this->configFactory->getEditable('smmg_newsletter.settings');
+        $config = $this->configFactory->getEditable('smmg_coupon.settings');
 
         foreach ($template_list as $template) {
             $template_name = 'template_' . $template;
