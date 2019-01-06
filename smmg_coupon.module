@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\node\NodeInterface;
@@ -53,6 +54,8 @@ function smmg_coupon_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
 // if Token field empty fill in automaticaly
         $token = Helper::generateToken();
         $form['field_smmg_token']['widget'][0]['value']['#default_value'] = $token;
+        $form['title']['#access'] = FALSE;
+        $form['#entity_builders'][] = 'custom_coupon_node_title_builder';
     }
 }
 
@@ -186,4 +189,32 @@ function smmg_coupon_node_access(NodeInterface $node, $op, AccountInterface $acc
     // Default
     return AccessResult::neutral();
 
+}
+
+/**
+ * Title builder for Coupon content type.
+ *
+ * @param $entity_type
+ * @param \Drupal\node\NodeInterface $node
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+function custom_lesson_node_title_builder($entity_type, NodeInterface $node, $form, FormStateInterface $form_state)
+{
+    $config = \Drupal::config('smmg_coupon.settings');
+    $coupon_name = $config->get('coupon_name_singular');
+
+    $first_name = '';
+    $last_name = '';
+
+    if (!empty($node->get('field_first_name'))) {
+        $first_name = $node->get('field_first_name')->entity->getTitle();
+    }
+
+    if (!empty($node->get('field_last_name'))) {
+        $last_name = $node->get('field_last_name')->entity->getTitle();
+    }
+
+// Build Title
+    $node->setTitle($coupon_name . ' - ' . $first_name . ' ' . $last_name);
 }
