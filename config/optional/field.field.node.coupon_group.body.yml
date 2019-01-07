@@ -1,0 +1,22 @@
+uuid: 50ec8c10-b5ec-4302-b974-68d53d2ecf4c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.coupon_group
+  module:
+    - text
+id: node.coupon_group.body
+field_name: body
+entity_type: node
+bundle: coupon_group
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

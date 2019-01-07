@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.coupon_order.body
     - field.field.node.coupon_order.field_city
+    - field.field.node.coupon_order.field_coupon_group
     - field.field.node.coupon_order.field_coupon_unit
     - field.field.node.coupon_order.field_email
     - field.field.node.coupon_order.field_first_name
@@ -32,6 +33,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_coupon_group:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_coupon_unit:
     weight: 0

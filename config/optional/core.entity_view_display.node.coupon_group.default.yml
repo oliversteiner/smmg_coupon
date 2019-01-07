@@ -1,0 +1,29 @@
+uuid: 484ab733-cb68-4e21-8b8e-bab352359004
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.coupon_group.body
+    - node.type.coupon_group
+  module:
+    - text
+    - user
+id: node.coupon_group.default
+targetEntityType: node
+bundle: coupon_group
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true

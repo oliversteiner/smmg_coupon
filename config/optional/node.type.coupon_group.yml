@@ -1,0 +1,17 @@
+uuid: d75a623d-ccb8-4295-b2cb-a54767a6398a
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Coupon Group'
+type: coupon_group
+description: ''
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

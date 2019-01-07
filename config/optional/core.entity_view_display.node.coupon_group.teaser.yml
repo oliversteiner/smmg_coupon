@@ -1,0 +1,31 @@
+uuid: 98352adb-4a64-40cf-a31d-3b1eab7c3262
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.coupon_group.body
+    - node.type.coupon_group
+  module:
+    - text
+    - user
+id: node.coupon_group.teaser
+targetEntityType: node
+bundle: coupon_group
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
