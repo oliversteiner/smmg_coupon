@@ -82,7 +82,7 @@ class CouponSettingsForm extends ConfigFormBase
         // - suffix
         $form['general']['suffix'] = array(
             '#type' => 'textfield',
-            '#title' => $this->t('suffix (USD, EUR, SFr)'),
+            '#title' => $this->t('suffix (USD, EUR, SFR)'),
             '#default_value' => $config->get('suffix'),
         );
 
