@@ -159,8 +159,8 @@ trait CouponTrait
             $variables['total']['number'] = $coupon_total_number;
             $variables['total']['amount'] = $coupon_total_amount;
 
-            $variables['total']['number_suffix'] = $number_suffix;
-            $variables['total']['amount_suffix'] = $amount_suffix;
+            $variables['number_suffix'] = $number_suffix;
+            $variables['amount_suffix'] = $amount_suffix;
 
 
             // Title

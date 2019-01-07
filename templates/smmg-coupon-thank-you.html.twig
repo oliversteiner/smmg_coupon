@@ -16,7 +16,7 @@
                 <span class="coupon-table-number">{{ coupon.number }}</span>
                 <span class="coupon-table-times">&times;</span>
                 <span class="coupon-table-amount">{{ coupon.amount }}</span>
-                <span class="coupon-table-unit">Fr.-</span>
+                <span class="coupon-table-unit">{{ amount_suffix }}</span>
             </div>
 
         {% endfor %}
@@ -24,9 +24,9 @@
         <div id="coupon-table-total" class="coupon-table-total coupon-table-total-receipt">
             <span class="coupon-table-total-total">Total:</span>
             <span class="coupon-table-total-number">{{ total.number }}</span>
-            <span class="coupon-table-total-number-label">pieces</span>
+            <span class="coupon-table-total-number-label">{{ number_suffix }}</span>
             <span class="coupon-table-total-amount">{{ total.amount }}</span>
-            <span class="coupon-table-total-unit">Fr.-</span>
+            <span class="coupon-table-total-unit">{{ amount_suffix }}</span>
         </div>
     </div>
 
@@ -38,8 +38,8 @@
             <div class="address-gender">{{ address.gender }}</div>
             <div class="address-name">{{ address.first_name }} {{ address.last_name }}</div>
 
-            <div class="address-street">{{ address.address }}</div>
-            <div class="address-city">{{ address.zip }}  {{ address.city }}</div>
+            <div class="address-street">{{ address.street_and_number }}</div>
+            <div class="address-city">{{ address.zip_code }}  {{ address.city }}</div>
 
             <div class="address-email"><i class="fas fa-envelope"></i> {{ address.email }}</div>
             <div class="address-phone"><i class="fas fa-phone"></i> {{ address.phone }}</div>

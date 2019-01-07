@@ -4,8 +4,8 @@ Delivery Address
 -------------------------------------------
     {{ address.gender }}
     {{ address.first_name }} {{ address.last_name }}
-    {{ address.address }}
-    {{ address.zip }} {{ address.city }}
+    {{ address.street_and_number }}
+    {{ address.zip_code }} {{ address.city }}
 
     {{ address.email }}
     {{ address.phone }}
@@ -15,13 +15,13 @@ Coupons
 -------------------------------------------
 {% for coupon in coupons %}
 {% if not loop.last %}
-    {{ coupon.number }} x {{ coupon.amount }} {{ total.amount_suffix }}
+    {{ coupon.number }} x {{ coupon.amount }} {{ amount_suffix }}
 {% else %}
-    {{ coupon.number }} x {{ coupon.amount }} {{ total.amount_suffix }}
+    {{ coupon.number }} x {{ coupon.amount }} {{ amount_suffix }}
 {% endif %}
 {% endfor %}
 -------------------------------------------
-    Total:     {{ total.number }} {{ total.number_suffix }} {{ total.amount }} {{ total.amount_suffix }}
+    Total:     {{ total.number }} {{ number_suffix }} {{ total.amount }} {{ amount_suffix }}
 -------------------------------------------
 
 

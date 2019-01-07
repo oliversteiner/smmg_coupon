@@ -3,8 +3,8 @@
     <address style="font-size: 14px">
         <span>{{ address.gender }}</span><br>
         <span style="font-weight: bold">{{ address.first_name }} {{ address.last_name }}</span><br>
-        <span>{{ address.address }}</span><br>
-        <span> {{ address.zip }} {{ address.city }}</span><br>
+        <span>{{ address.street_and_number }}</span><br>
+        <span> {{ address.zip_code }} {{ address.city }}</span><br>
         <br>
         <span>{{ address.email }}</span><br>
         <span>{{ address.phone }}</span><br>
@@ -29,7 +29,7 @@
                 <tr align="center">
                     <td style="border-bottom: 1px solid silver">{{ coupon.number }}</td>
                     <td style="border-bottom: 1px solid silver">&times;</td>
-                    <td style="border-bottom: 1px solid silver">{{ coupon.amount }} {{ total.amount_suffix }}</td>
+                    <td style="border-bottom: 1px solid silver">{{ coupon.amount }} {{ amount_suffix }}</td>
                 </tr>
 
             {% else %}
@@ -37,7 +37,7 @@
                 <tr align="center">
                     <td style="">{{ coupon.number }}</td>
                     <td style="">&times;</td>
-                    <td style="">{{ coupon.amount }} {{ total.amount_suffix }}</td>
+                    <td style="">{{ coupon.amount }} {{ amount_suffix }}</td>
                 </tr>
             {% endif %}
         {% endfor %}
@@ -47,8 +47,8 @@
 
         <tr>
             <td style="border-bottom: 2px solid gray">Total</td>
-            <td style="border-bottom: 2px solid gray">{{ total.number }} {{ total.number_suffix }}</td>
-            <td style="border-bottom: 2px solid gray">{{ total.amount }} {{ total.amount_suffix }}</td>
+            <td style="border-bottom: 2px solid gray">{{ total.number }} {{ number_suffix }}</td>
+            <td style="border-bottom: 2px solid gray">{{ total.amount }} {{ amount_suffix }}</td>
         </tr>
     </table>
 </div>
