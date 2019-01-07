@@ -9,6 +9,7 @@ dependencies:
   - smmg_member
   - honeypot
   - inline_entity_form
+  - field_group
 
 project: smmg_coupon
 version: 1.0.0

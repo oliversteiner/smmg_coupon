@@ -20,14 +20,51 @@ dependencies:
     - field.field.node.coupon_order.field_zip_code
     - node.type.coupon_order
   module:
+    - field_group
     - inline_entity_form
+third_party_settings:
+  field_group:
+    group_details:
+      children:
+        - field_gender
+        - field_first_name
+        - field_last_name
+        - field_street_and_number
+        - field_zip_code
+        - field_city
+        - field_phone
+        - field_email
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: Address
+    group_coupon:
+      children:
+        - field_coupon_group
+        - field_smmg_accounting
+        - field_smmg_order_status
+        - field_smmg_origin
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: false
+      label: Coupon
 id: node.coupon_order.default
 targetEntityType: node
 bundle: coupon_order
 mode: default
 content:
   field_city:
-    weight: 8
+    weight: 7
     settings:
       size: 60
       placeholder: ''
@@ -35,16 +72,13 @@ content:
     type: string_textfield
     region: content
   field_coupon_group:
-    weight: 26
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 0
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_coupon_unit:
-    weight: 0
+    weight: 1
     settings:
       form_mode: default
       override_labels: true
@@ -90,7 +124,7 @@ content:
     type: string_textfield
     region: content
   field_phone:
-    weight: 6
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -98,22 +132,19 @@ content:
     type: string_textfield
     region: content
   field_smmg_accounting:
-    weight: 10
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    weight: 1
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_smmg_order_status:
-    weight: 11
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_smmg_origin:
-    weight: 1
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -127,7 +158,7 @@ content:
     type: string_textfield
     region: content
   field_zip_code:
-    weight: 7
+    weight: 6
     settings:
       size: 60
       placeholder: ''

@@ -48,7 +48,6 @@ function smmg_coupon_theme()
 function smmg_coupon_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
 
-    dpm($form_id);
     // Coupon Order
     // --------------------------------------
     if (in_array($form_id, ['node_coupon_order_edit_form', 'node_coupon_order_form'])) {
