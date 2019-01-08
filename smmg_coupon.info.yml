@@ -12,6 +12,6 @@ dependencies:
   - field_group
 
 project: smmg_coupon
-version: 1.0.0
+version: 8.x-1.0.0
 'interface translation project': smmg_coupon
-'interface translation server pattern': modules/%project/translations/%project-%version.%language.po
+'interface translation server pattern': custom/modules/%project/translations/%project-%version.%language.po
