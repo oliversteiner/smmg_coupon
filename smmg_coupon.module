@@ -212,6 +212,7 @@ function smmg_coupon_node_access(NodeInterface $node, $op, AccountInterface $acc
  * @param \Drupal\node\NodeInterface $node
  * @param $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @throws Exception
  */
 function custom_lesson_node_title_builder($entity_type, NodeInterface $node, $form, FormStateInterface $form_state)
 {
