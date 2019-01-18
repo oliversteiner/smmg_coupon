@@ -187,7 +187,7 @@ function smmg_coupon_node_access(NodeInterface $node, $op, AccountInterface $acc
         // block http://example.com/node/123
         $parameter_node = \Drupal::routeMatch()->getRawParameter('node');
 
-        if ($op == 'view' && $parameter_node == $node->id()) {
+        if ($op == 'view' && $parameter_node == $node->id() && in_array($bundle_id, $restricted_bundles) ) {
 
             // Allow for admin roles
             if (in_array($bundle_id, $restricted_bundles) && in_array($role_id, $roles)) {
@@ -202,8 +202,8 @@ function smmg_coupon_node_access(NodeInterface $node, $op, AccountInterface $acc
 
     // Default
     return AccessResult::neutral();
-
 }
+
 
 /**
  * Title builder for Coupon content type.
