@@ -133,4 +133,16 @@ class CouponController extends ControllerBase
 
     return $build;
   }
+
+  /**
+   * @param $nid
+   * @param $token
+   */
+  public function sendEmail($nid, $token): void
+  {
+    try {
+      self::sendNotificationMail($nid, $token);
+    } catch (Exception $e) {
+    }
+  }
 }

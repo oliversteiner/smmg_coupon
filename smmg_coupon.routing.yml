@@ -68,3 +68,15 @@ smmg_coupon.coupon_sandbox_send_email:
   requirements:
     _permission: 'access content'
 
+#
+# Coupon - Send Thank You Email
+#
+smmg_coupon.coupon_send_email:
+  path: 'coupon/send/{coupon_order_nid}/{token}'
+  defaults:
+    _controller: '\Drupal\smmg_coupon\Controller\CouponController::sendEmail'
+    _title: 'Coupon Email'
+    coupon_order_nid: null
+    token: null
+  requirements:
+    _permission: 'access content'

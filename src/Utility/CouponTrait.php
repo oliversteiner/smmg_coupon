@@ -6,14 +6,15 @@ use Drupal;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityStorageException;
+use Drupal\Core\Link;
 use Drupal\node\Entity\Node;
 use Drupal\small_messages\Utility\Email;
 use Drupal\small_messages\Utility\Helper;
 use Exception;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 trait CouponTrait
 {
-
   public static function getGroupOptions(): array
   {
     $option_list = [];
@@ -41,13 +42,16 @@ trait CouponTrait
     $coupon_order_nid,
     $member_nid = null,
     $token = null
-  ): array {
-    $config = Drupal::config('smmg_coupon.settings');
+  ): array
+  {
+
+    $config = self::getConfig();
+
     $name_singular = $config->get('coupon_name_singular');
     $amount_suffix = $config->get('suffix');
 
     $variables = [];
-    $variables['module'] = 'Coupons';
+    $variables['module'] = self::getModuleName();
 
     $variables['address']['gender'] = '';
     $variables['address']['first_name'] = '';
@@ -70,11 +74,11 @@ trait CouponTrait
 
     // Clean Input
     $member_nid = trim($member_nid);
-    $member_nid = (int) $member_nid;
+    $member_nid = (int)$member_nid;
 
     // Clean Input
     $coupon_order_nid = trim($coupon_order_nid);
-    $coupon_order_nid = (int) $coupon_order_nid;
+    $coupon_order_nid = (int)$coupon_order_nid;
 
     // Load Terms from Taxonomy
     $amount_list = Helper::getTermsByID('coupon_amount');
@@ -89,7 +93,7 @@ trait CouponTrait
       $node_token = Helper::getFieldValue($coupon_order, 'smmg_token');
 
       if ($token != $node_token) {
-        //  throw new AccessDeniedHttpException();
+        // throw new AccessDeniedHttpException();
       }
 
       // Address
@@ -232,11 +236,9 @@ trait CouponTrait
    */
   private static function sendNotificationMail($nid, $token): void
   {
-    $module = self::getModuleName();
     $data = self::couponVariables($nid, $token);
-    $templates = self::getTemplates();
 
-    Email::sendCouponMail($module, $data, $templates);
+    self::sendCouponMail($data);
   }
 
   /**
@@ -248,13 +250,14 @@ trait CouponTrait
    */
   public static function newCouponUnit($number, $amount): array
   {
+    $config = self::getConfig();
+
     $output = [
       'status' => false,
       'mode' => 'save',
       'nid' => false,
       'message' => '',
     ];
-    $config = Drupal::config('smmg_coupon.settings');
     $suffix = $config->get('suffix');
 
     $amount_list = Helper::getTermsByID('coupon_amount');
@@ -296,7 +299,7 @@ trait CouponTrait
    */
   public static function newOrder(array $data): array
   {
-    $config = Drupal::config('smmg_coupon.settings');
+    $config = self::getConfig();
     $name_singular = $config->get('coupon_name_singular');
 
     $coupons = [];
@@ -407,8 +410,34 @@ trait CouponTrait
    */
   public static function getTemplates(): array
   {
-    $module = 'smmg_coupon';
+    $module = self::getModuleName();
+
     $template_names = self::getTemplateNames();
     return Helper::getTemplates($module, $template_names);
+  }
+
+  /**
+   * @param $module
+   * @param $data
+   * @param $templates
+   * @return bool
+   */
+  public static function sendCouponMail($data): bool
+  {
+    $module = self::getModuleName();
+    $templates = self::getTemplates();
+
+    Email::sendNotificationMail($module, $data, $templates);
+
+    return true;
+  }
+
+  /**
+   * @return Drupal\Core\Config\ImmutableConfig
+   */
+  public static function getConfig(): Drupal\Core\Config\ImmutableConfig
+  {
+    $module = self::getModuleName();
+    return Drupal::config($module . '.settings');
   }
 }
