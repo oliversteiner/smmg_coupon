@@ -179,11 +179,11 @@ trait CouponTrait
 
       foreach ($coupons as $coupon) {
         // Total Number
-        $coupon_total_number = $coupon_total_number + $coupon['number'];
+        $coupon_total_number += $coupon['number'];
 
         // Total Amount
         $row_total = $coupon['number'] * $coupon['amount'];
-        $coupon_total_amount = $coupon_total_amount + $row_total;
+        $coupon_total_amount += $row_total;
       }
 
       $coupon_name_singular = t('Coupon');
@@ -236,7 +236,7 @@ trait CouponTrait
     $data = self::couponVariables($nid, $token);
     $templates = self::getTemplates();
 
-    Email::sendNotificationMail($module, $data, $templates);
+    Email::sendCouponMail($module, $data, $templates);
   }
 
   /**
