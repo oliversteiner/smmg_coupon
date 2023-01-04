@@ -160,7 +160,7 @@ class CouponForm extends FormBase
                 <span class="coupon-table-amount">' .
         $this->text_amount .
         '</span>
-                <span class="coupon-table-unit"></span> 
+                <span class="coupon-table-unit"></span>
                 <span class="coupon-table-delete"></span>
                 </div>',
     ];
@@ -253,7 +253,7 @@ class CouponForm extends FormBase
                 <span class="coupon-table-total-total">' .
         $this->text_total .
         ':</span>
-                <span class="coupon-table-total-number">0</span> 
+                <span class="coupon-table-total-number">0</span>
                 <span class="coupon-table-total-number-label">' .
         $this->coupon_plural .
         '</span>
@@ -382,7 +382,7 @@ class CouponForm extends FormBase
     // Submit
     // ===============================================
 
-    $token = Crypt::randomBytes(20);
+    $token = Crypt::randomBytesBase64();
     $form['token'] = [
       '#type' => 'hidden',
       '#value' => bin2hex($token),
