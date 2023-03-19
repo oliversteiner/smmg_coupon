@@ -8,7 +8,7 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\small_messages\Utility\Helper;
+use Drupal\mollo_utils\Utility\MolloUtils;
 use Drupal\smmg_coupon\Controller\CouponController;
 use Drupal\smmg_newsletter\Controller\NewsletterController;
 
@@ -40,7 +40,7 @@ class CouponForm extends FormBase
 
     // Load Coupons Amount
     $vid = 'coupon_amount';
-    $this->amount_options = Helper::getTermsByID($vid);
+    $this->amount_options = MolloUtils::getTermsByID($vid);
 
     // Text
     $this->coupon_singular = t('Coupon');
@@ -160,7 +160,7 @@ class CouponForm extends FormBase
                 <span class="coupon-table-amount">' .
         $this->text_amount .
         '</span>
-                <span class="coupon-table-unit"></span> 
+                <span class="coupon-table-unit"></span>
                 <span class="coupon-table-delete"></span>
                 </div>',
     ];
@@ -253,7 +253,7 @@ class CouponForm extends FormBase
                 <span class="coupon-table-total-total">' .
         $this->text_total .
         ':</span>
-                <span class="coupon-table-total-number">0</span> 
+                <span class="coupon-table-total-number">0</span>
                 <span class="coupon-table-total-number-label">' .
         $this->coupon_plural .
         '</span>
@@ -382,7 +382,7 @@ class CouponForm extends FormBase
     // Submit
     // ===============================================
 
-    $token = Crypt::randomBytes(20);
+    $token = Crypt::randomBytesBase64(20);
     $form['token'] = [
       '#type' => 'hidden',
       '#value' => bin2hex($token),

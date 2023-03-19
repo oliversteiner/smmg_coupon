@@ -9,8 +9,8 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\mollo_utils\Utility\MolloUtils;
 use Drupal\node\NodeInterface;
-use Drupal\small_messages\Utility\Helper;
 
 /**
  * Implements hook_help().
@@ -54,7 +54,7 @@ function smmg_coupon_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
 
 
         // if Token field empty fill in automaticaly
-        $token = Helper::generateToken();
+        $token = MolloUtils::generateToken();
         $form['field_smmg_token']['widget'][0]['value']['#default_value'] = $token;
 
         // Automatic Fill Title Field
@@ -223,8 +223,8 @@ function custom_lesson_node_title_builder($entity_type, NodeInterface $node, $fo
     $last_name = '';
 
     if (!empty($node)) {
-        $first_name = Helper::getFieldValue($node, 'first_name');
-        $last_name = Helper::getFieldValue($node, 'last_name');
+        $first_name = MolloUtils::getFieldValue($node, 'first_name');
+        $last_name = MolloUtils::getFieldValue($node, 'last_name');
     }
 
 
@@ -244,7 +244,7 @@ function custom_lesson_node_title_builder($entity_type, NodeInterface $node, $fo
 function coupon_unit_title_builder($entity_type, NodeInterface $node, $form, FormStateInterface $form_state)
 {
     $node->setTitle('Coupon Unit');
-    $amount_list = Helper::getTermsByID('coupon_amount');
+    $amount_list = MolloUtils::getTermsByID('coupon_amount');
 
     $config = \Drupal::config('smmg_coupon.settings');
     $suffix = $config->get('suffix');
@@ -253,8 +253,8 @@ function coupon_unit_title_builder($entity_type, NodeInterface $node, $form, For
     $amount = '';
 
     if (!empty($node)) {
-        $number = Helper::getFieldValue($node, 'coupon_number');
-        $amount = Helper::getFieldValue($node, 'coupon_amount', $amount_list);
+        $number = MolloUtils::getFieldValue($node, 'coupon_number');
+        $amount = MolloUtils::getFieldValue($node, 'coupon_amount', $amount_list);
     }
 
 
