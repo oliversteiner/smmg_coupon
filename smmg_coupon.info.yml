@@ -1,7 +1,7 @@
 name: 'Small Messages - Coupon'
 type: module
 description: 'Coupon Plugin for Small Messages'
-core: 8.x
+core_version_requirement: ^9.2 || ^10
 package: 'Small Messages'
 dependencies:
   - drupal:node
