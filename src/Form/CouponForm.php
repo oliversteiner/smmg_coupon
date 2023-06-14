@@ -8,7 +8,7 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\mollo_utils\Utility\MolloUtils;
+use Drupal\mollo_utils\Utility\Helper;
 use Drupal\smmg_coupon\Controller\CouponController;
 use Drupal\smmg_newsletter\Controller\NewsletterController;
 
@@ -40,7 +40,7 @@ class CouponForm extends FormBase
 
     // Load Coupons Amount
     $vid = 'coupon_amount';
-    $this->amount_options = MolloUtils::getTermsByID($vid);
+    $this->amount_options = Helper::getTermsByID($vid);
 
     // Text
     $this->coupon_singular = t('Coupon');
