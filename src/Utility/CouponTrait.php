@@ -8,7 +8,7 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\node\Entity\Node;
 use Drupal\small_messages\Utility\Email;
-use Drupal\mollo_utils\Utility\Helper;
+use Drupal\mollo_utils\Utility\MolloUtils;
 use Exception;
 
 trait CouponTrait
@@ -77,8 +77,8 @@ trait CouponTrait
     $coupon_order_nid = (int)$coupon_order_nid;
 
     // Load Terms from Taxonomy
-    $amount_list = Helper::getTermsByID('coupon_amount');
-    $gender_list = Helper::getTermsByID('gender');
+    $amount_list = MolloUtils::getTermsByID('coupon_amount');
+    $gender_list = MolloUtils::getTermsByID('gender');
 
     // Coupon Order
     // ==============================================
@@ -86,7 +86,7 @@ trait CouponTrait
 
     if ($coupon_order && $coupon_order->bundle() == 'coupon_order') {
       // check token
-      $node_token = Helper::getFieldValue($coupon_order, 'smmg_token');
+      $node_token = MolloUtils::getFieldValue($coupon_order, 'smmg_token');
 
       if ($token != $node_token) {
         // throw new AccessDeniedHttpException();
@@ -94,46 +94,46 @@ trait CouponTrait
 
       // Address
       // ==============================================
-      $variables['address']['gender'] = Helper::getFieldValue(
+      $variables['address']['gender'] = MolloUtils::getFieldValue(
         $coupon_order,
         'gender',
-        $gender_list
+        'gender',
       );
-      $variables['address']['first_name'] = Helper::getFieldValue(
+      $variables['address']['first_name'] = MolloUtils::getFieldValue(
         $coupon_order,
         'first_name'
       );
-      $variables['address']['last_name'] = Helper::getFieldValue(
+      $variables['address']['last_name'] = MolloUtils::getFieldValue(
         $coupon_order,
         'last_name'
       );
-      $variables['address']['street_and_number'] = Helper::getFieldValue(
+      $variables['address']['street_and_number'] = MolloUtils::getFieldValue(
         $coupon_order,
         'street_and_number'
       );
-      $variables['address']['zip_code'] = Helper::getFieldValue(
+      $variables['address']['zip_code'] = MolloUtils::getFieldValue(
         $coupon_order,
         'zip_code'
       );
-      $variables['address']['city'] = Helper::getFieldValue(
+      $variables['address']['city'] = MolloUtils::getFieldValue(
         $coupon_order,
         'city'
       );
-      $variables['address']['email'] = Helper::getFieldValue(
+      $variables['address']['email'] = MolloUtils::getFieldValue(
         $coupon_order,
         'email'
       );
-      $variables['address']['phone'] = Helper::getFieldValue(
+      $variables['address']['phone'] = MolloUtils::getFieldValue(
         $coupon_order,
         'phone'
       );
 
       // Token
-      $variables['token'] = Helper::getFieldValue($coupon_order, 'smmg_token');
+      $variables['token'] = MolloUtils::getFieldValue($coupon_order, 'smmg_token');
 
       // Coupon
       // ==============================================
-      $variables['group'] = Helper::getFieldValue(
+      $variables['group'] = MolloUtils::getFieldValue(
         $coupon_order,
         'coupon_group'
       );
@@ -141,7 +141,7 @@ trait CouponTrait
       $coupons = [];
 
       // Get All Coupon_unit Nids
-      $coupon_arr = Helper::getFieldValue(
+      $coupon_arr = MolloUtils::getFieldValue(
         $coupon_order,
         'coupon_unit',
         null,
@@ -155,11 +155,11 @@ trait CouponTrait
         foreach ($coupon_arr as $nid) {
           $coupon_unit = Node::load($nid);
           if ($coupon_unit && $coupon_unit->bundle() == 'coupon_unit') {
-            $coupons[$i]['number'] = Helper::getFieldValue(
+            $coupons[$i]['number'] = MolloUtils::getFieldValue(
               $coupon_unit,
               'coupon_number'
             );
-            $coupons[$i]['amount'] = Helper::getFieldValue(
+            $coupons[$i]['amount'] = MolloUtils::getFieldValue(
               $coupon_unit,
               'coupon_amount',
               'coupon_amount'
@@ -215,7 +215,7 @@ trait CouponTrait
 
       if ($member && $member->bundle() == 'member') {
         // Newsletter
-        $variables['newsletter'] = Helper::getFieldValue(
+        $variables['newsletter'] = MolloUtils::getFieldValue(
           $member,
           'smmg_accept_newsletter'
         );
@@ -256,7 +256,7 @@ trait CouponTrait
     ];
     $suffix = $config->get('suffix');
 
-    $amount_list = Helper::getTermsByID('coupon_amount');
+    $amount_list = MolloUtils::getTermsByID('coupon_amount');
     $title = $number . ' × ' . $amount_list[$amount] . ' ' . $suffix;
     $node = Drupal::entityTypeManager()
       ->getStorage('node')
@@ -318,7 +318,7 @@ trait CouponTrait
     // Origin
     $origin = 'Coupon';
     $vid = 'field_smmg_origin';
-    $origin_tid = Helper::getTermIDByName($origin,$vid);
+    $origin_tid = MolloUtils::getTermIDByName($origin,$vid);
 
     // Token
     $token = $data['token'];
