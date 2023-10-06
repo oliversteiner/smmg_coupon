@@ -15,7 +15,7 @@ dependencies:
     - field.field.node.coupon_order.field_smmg_accounting
     - field.field.node.coupon_order.field_smmg_order_status
     - field.field.node.coupon_order.field_smmg_origin
-    - field.field.node.coupon_order.field_smmg_token
+    - field.field.node.coupon_order.field_mollo_token
     - field.field.node.coupon_order.field_street_and_number
     - field.field.node.coupon_order.field_zip_code
     - node.type.coupon_order
@@ -168,7 +168,7 @@ content:
 hidden:
   body: true
   created: true
-  field_smmg_token: true
+  field_mollo_token: true
   langcode: true
   moderation_state: true
   path: true

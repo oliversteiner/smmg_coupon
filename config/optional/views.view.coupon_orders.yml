@@ -9,7 +9,7 @@ dependencies:
     - field.storage.node.field_last_name
     - field.storage.node.field_smmg_accounting
     - field.storage.node.field_smmg_order_status
-    - field.storage.node.field_smmg_token
+    - field.storage.node.field_mollo_token
     - node.type.coupon_order
     - system.menu.main
   module:
@@ -624,10 +624,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_smmg_token:
-          id: field_smmg_token
-          table: node__field_smmg_token
-          field: field_smmg_token
+        field_mollo_token:
+          id: field_mollo_token
+          table: node__field_mollo_token
+          field: field_mollo_token
           relationship: none
           group_type: group
           admin_label: ''
@@ -808,7 +808,7 @@ display:
         - 'config:field.storage.node.field_last_name'
         - 'config:field.storage.node.field_smmg_accounting'
         - 'config:field.storage.node.field_smmg_order_status'
-        - 'config:field.storage.node.field_smmg_token'
+        - 'config:field.storage.node.field_mollo_token'
   page_1:
     display_plugin: page
     id: page_1
@@ -841,4 +841,4 @@ display:
         - 'config:field.storage.node.field_last_name'
         - 'config:field.storage.node.field_smmg_accounting'
         - 'config:field.storage.node.field_smmg_order_status'
-        - 'config:field.storage.node.field_smmg_token'
+        - 'config:field.storage.node.field_mollo_token'

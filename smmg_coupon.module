@@ -55,7 +55,7 @@ function smmg_coupon_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
 
         // if Token field empty fill in automaticaly
         $token = MolloUtils::generateToken();
-        $form['field_smmg_token']['widget'][0]['value']['#default_value'] = $token;
+        $form['field_mollo_token']['widget'][0]['value']['#default_value'] = $token;
 
         // Automatic Fill Title Field
         $form['title']['#access'] = FALSE;

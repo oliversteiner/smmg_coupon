@@ -86,7 +86,7 @@ trait CouponTrait
 
     if ($coupon_order && $coupon_order->bundle() == 'coupon_order') {
       // check token
-      $node_token = MolloUtils::getFieldValue($coupon_order, 'smmg_token');
+      $node_token = MolloUtils::getFieldValue($coupon_order, 'mollo_token');
 
       if ($token != $node_token) {
         // throw new AccessDeniedHttpException();
@@ -129,7 +129,7 @@ trait CouponTrait
       );
 
       // Token
-      $variables['token'] = MolloUtils::getFieldValue($coupon_order, 'smmg_token');
+      $variables['token'] = MolloUtils::getFieldValue($coupon_order, 'mollo_token');
 
       // Coupon
       // ==============================================
@@ -366,7 +366,7 @@ trait CouponTrait
       'field_smmg_origin' => $origin_tid,
 
       // Token
-      'field_smmg_token' => $token,
+      'field_mollo_token' => $token,
     ]);
 
     // coupon

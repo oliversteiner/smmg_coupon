@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_smmg_token
+    - field.storage.node.field_mollo_token
     - node.type.coupon_order
-id: node.coupon_order.field_smmg_token
-field_name: field_smmg_token
+id: node.coupon_order.field_mollo_token
+field_name: field_mollo_token
 entity_type: node
 bundle: coupon_order
 label: Token
